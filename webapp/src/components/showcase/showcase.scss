@@ -25,10 +25,88 @@
     min-height: 0;
 }
 
-.CompassShowcase__list {
+.CompassShowcase__sections {
     display: flex;
     flex-direction: column;
-    padding: 8px 0 16px;
+    gap: 24px;
+    padding: 16px;
+}
+
+.CompassShowcase__section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 0;
+}
+
+.CompassShowcase__sectionTitle {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    color: var(--center-channel-color);
+}
+
+.CompassShowcase__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 110px), 1fr));
+    gap: 12px;
+}
+
+.CompassShowcase__card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: inherit;
+    text-align: center;
+    cursor: pointer;
+}
+
+.CompassShowcase__cardPreview {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    border: 1px solid rgba(var(--center-channel-color-rgb), 0.08);
+    border-radius: 8px;
+    background: rgba(var(--center-channel-color-rgb), 0.04);
+}
+
+.CompassShowcase__card:hover .CompassShowcase__cardPreview,
+.CompassShowcase__card:focus-visible .CompassShowcase__cardPreview {
+    border-color: rgba(var(--center-channel-color-rgb), 0.16);
+    background: rgba(var(--center-channel-color-rgb), 0.08);
+}
+
+.CompassShowcase__cardScaler {
+    overflow: hidden;
+}
+
+.CompassShowcase__cardStage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    max-width: 280px;
+    padding: 8px;
+    transform-origin: top left;
+}
+
+.CompassShowcase__cardName {
+    display: block;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .CompassShowcase__body {

@@ -4,17 +4,14 @@
 import React, {useMemo, useState} from 'react';
 
 import {EmptyState} from '@mattermost/compass-ui/components/empty-state';
-import {MenuItem} from '@mattermost/compass-ui/components/menu-item';
-import {
-    PopoverMenuGroup,
-    PopoverMenuGroupTitle,
-} from '@mattermost/compass-ui/components/popover-menu';
 import {Scrollbar} from '@mattermost/compass-ui/components/scrollbar';
 import {SearchInput} from '@mattermost/compass-ui/components/search-input';
 
 import {CATALOG} from './catalog';
 import {filterCatalog} from './helpers';
+import ScaledPreview from './scaled-preview';
 import {CATEGORIES, CATEGORY_LABELS} from './types';
+import type {CatalogEntry} from './types';
 
 type Props = {
     onSelect: (id: string) => void;
@@ -49,35 +46,60 @@ export default function Gallery({onSelect}: Props) {
                         }}
                     />
                 ) : (
-                    <div className='CompassShowcase__list'>
+                    <div className='CompassShowcase__sections'>
                         {CATEGORIES.map((section) => {
                             const items = entries.filter((entry) => entry.category === section);
                             if (items.length === 0) {
                                 return null;
                             }
                             return (
-                                <PopoverMenuGroup
+                                <section
                                     key={section}
+                                    className='CompassShowcase__section'
                                     aria-label={CATEGORY_LABELS[section]}
                                 >
-                                    <PopoverMenuGroupTitle>
+                                    <h2 className='CompassShowcase__sectionTitle'>
                                         {CATEGORY_LABELS[section]}
-                                    </PopoverMenuGroupTitle>
-                                    {items.map((entry) => (
-                                        <MenuItem
-                                            key={entry.id}
-                                            label={entry.name}
-                                            leadingElement={false}
-                                            type='button'
-                                            onClick={() => onSelect(entry.id)}
-                                        />
-                                    ))}
-                                </PopoverMenuGroup>
+                                    </h2>
+                                    <div className='CompassShowcase__grid'>
+                                        {items.map((entry) => (
+                                            <CatalogCard
+                                                key={entry.id}
+                                                entry={entry}
+                                                onSelect={onSelect}
+                                            />
+                                        ))}
+                                    </div>
+                                </section>
                             );
                         })}
                     </div>
                 )}
             </Scrollbar>
         </div>
+    );
+}
+
+type CardProps = {
+    entry: CatalogEntry;
+    onSelect: (id: string) => void;
+};
+
+function CatalogCard({entry, onSelect}: CardProps) {
+    const Preview = entry.preview;
+
+    return (
+        <button
+            type='button'
+            className='CompassShowcase__card'
+            onClick={() => onSelect(entry.id)}
+        >
+            <ScaledPreview>
+                <Preview/>
+            </ScaledPreview>
+            <span className='CompassShowcase__cardName'>
+                {entry.name}
+            </span>
+        </button>
     );
 }
