@@ -27,7 +27,6 @@ Enable plugin uploads, then:
 
 ```bash
 export MM_SERVICESETTINGS_SITEURL=http://localhost:8065
-export MM_ADMIN_TOKEN=<token>
 make deploy
 ```
 
