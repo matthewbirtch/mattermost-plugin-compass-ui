@@ -3,7 +3,7 @@
 
 import {CATALOG} from './catalog';
 import {countByCategory, filterCatalog} from './helpers';
-import {CATEGORIES} from './types';
+import {CATEGORIES, categoryPath} from './types';
 import type {CatalogEntry} from './types';
 
 const fixture: CatalogEntry[] = [
@@ -72,5 +72,12 @@ describe('CATALOG', () => {
     it('uses unique ids', () => {
         const ids = CATALOG.map((entry) => entry.id);
         expect(new Set(ids).size).toEqual(ids.length);
+    });
+});
+
+describe('categoryPath', () => {
+    it('builds a truncated-style Components breadcrumb', () => {
+        expect(categoryPath('actions')).toEqual('Components - Actions');
+        expect(categoryPath('forms')).toEqual('Components - Forms and Input');
     });
 });

@@ -39,6 +39,10 @@ export const CATEGORY_LABELS: Record<Category, string> = {
     chrome: 'Chrome',
 };
 
+export function categoryPath(category: Category): string {
+    return `Components - ${CATEGORY_LABELS[category]}`;
+}
+
 export type CatalogEntry = {
     id: string;
     name: string;
