@@ -1,0 +1,132 @@
+// Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
+// See LICENSE.txt for license information.
+
+import React from 'react';
+
+import {ErrorMessage} from '@mattermost/compass-ui/components/error-message';
+import {PopoverNotice} from '@mattermost/compass-ui/components/popover-notice';
+import {SectionNotice} from '@mattermost/compass-ui/components/section-notice';
+import {Toast} from '@mattermost/compass-ui/components/toast';
+import {Tooltip} from '@mattermost/compass-ui/components/tooltip';
+
+import {Note, Variant} from './shared';
+
+export function ErrorMessagePreview() {
+    return (
+        <ErrorMessage message='Enter a valid channel URL.'/>
+    );
+}
+
+export function ErrorMessageDetail() {
+    return (
+        <ErrorMessage message='This field is required.'/>
+    );
+}
+
+export function SectionNoticePreview() {
+    return (
+        <SectionNotice
+            title='Invite teammates'
+            description='Share this workspace with people who should see Compass UI.'
+            type='info'
+        />
+    );
+}
+
+export function SectionNoticeDetail() {
+    return (
+        <div className='CompassShowcase__stack'>
+            <SectionNotice
+                description='Something needs attention.'
+                title='Warning'
+                type='warning'
+            />
+            <SectionNotice
+                description='The change was saved.'
+                title='Success'
+                type='success'
+                onDismiss={() => undefined}
+            />
+            <SectionNotice
+                description='This action cannot be undone.'
+                title='Danger'
+                type='danger'
+                primaryButtonLabel='Delete'
+            />
+        </div>
+    );
+}
+
+export function ToastPreview() {
+    return (
+        <Toast
+            message='Draft saved'
+            type='success'
+        />
+    );
+}
+
+export function ToastDetail() {
+    return (
+        <div className='CompassShowcase__stack'>
+            <Toast
+                message='Connecting to the server…'
+                type='general'
+            />
+            <Toast
+                actionLabel='Undo'
+                message='Message sent'
+                type='info'
+            />
+            <Toast
+                message='Unable to save changes'
+                type='danger'
+                onDismiss={() => undefined}
+            />
+        </div>
+    );
+}
+
+export function TooltipPreview() {
+    return (
+        <Tooltip label='Add a reaction'/>
+    );
+}
+
+export function TooltipDetail() {
+    return (
+        <>
+            <Note>
+                {'Tooltip is chrome-only — the host owns hover, delay, and positioning.'}
+            </Note>
+            <Variant label='With hint and shortcut'>
+                <Tooltip
+                    arrow='bottom'
+                    hint='Search this channel'
+                    label='Find'
+                    shortcutKeys={[{label: '⌘'}, {label: 'F'}]}
+                />
+            </Variant>
+        </>
+    );
+}
+
+export function PopoverNoticePreview() {
+    return (
+        <PopoverNotice title='Try keyboard shortcuts'>
+            {'Press ⌘K to jump to a channel.'}
+        </PopoverNotice>
+    );
+}
+
+export function PopoverNoticeDetail() {
+    return (
+        <PopoverNotice
+            title='Enable notifications'
+            variant='info'
+            actions={[{label: 'Enable', emphasis: 'primary'}]}
+        >
+            {'Stay up to date when teammates mention you.'}
+        </PopoverNotice>
+    );
+}
