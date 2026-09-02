@@ -34,23 +34,15 @@ const fixture: CatalogEntry[] = [
 ];
 
 describe('filterCatalog', () => {
-    it('returns every entry when query and category are unrestricted', () => {
-        expect(filterCatalog(fixture, '', 'all')).toHaveLength(3);
-    });
-
-    it('filters by category', () => {
-        expect(filterCatalog(fixture, '', 'forms').map((entry) => entry.id)).toEqual(['text-input']);
+    it('returns every entry when the query is empty', () => {
+        expect(filterCatalog(fixture, '')).toHaveLength(3);
+        expect(filterCatalog(fixture, '   ')).toHaveLength(3);
     });
 
     it('filters by name, description, and category text', () => {
-        expect(filterCatalog(fixture, 'primary', 'all').map((entry) => entry.id)).toEqual(['button']);
-        expect(filterCatalog(fixture, 'field', 'all').map((entry) => entry.id)).toEqual(['text-input']);
-        expect(filterCatalog(fixture, 'actions', 'all').map((entry) => entry.id)).toEqual(['button']);
-    });
-
-    it('intersects search with the selected category', () => {
-        expect(filterCatalog(fixture, 'button', 'forms')).toHaveLength(0);
-        expect(filterCatalog(fixture, 'button', 'actions')).toHaveLength(1);
+        expect(filterCatalog(fixture, 'primary').map((entry) => entry.id)).toEqual(['button']);
+        expect(filterCatalog(fixture, 'field').map((entry) => entry.id)).toEqual(['text-input']);
+        expect(filterCatalog(fixture, 'actions').map((entry) => entry.id)).toEqual(['button']);
     });
 });
 

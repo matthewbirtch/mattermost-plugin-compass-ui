@@ -4,14 +4,17 @@
 import React, {useMemo, useState} from 'react';
 
 import {EmptyState} from '@mattermost/compass-ui/components/empty-state';
+import {MenuItem} from '@mattermost/compass-ui/components/menu-item';
+import {
+    PopoverMenuGroup,
+    PopoverMenuGroupTitle,
+} from '@mattermost/compass-ui/components/popover-menu';
 import {Scrollbar} from '@mattermost/compass-ui/components/scrollbar';
 import {SearchInput} from '@mattermost/compass-ui/components/search-input';
-import {Tabs} from '@mattermost/compass-ui/components/tabs';
 
 import {CATALOG} from './catalog';
-import {countByCategory, filterCatalog} from './helpers';
+import {filterCatalog} from './helpers';
 import {CATEGORIES, CATEGORY_LABELS} from './types';
-import type {CatalogEntry, CategoryFilter} from './types';
 
 type Props = {
     onSelect: (id: string) => void;
@@ -19,24 +22,11 @@ type Props = {
 
 export default function Gallery({onSelect}: Props) {
     const [query, setQuery] = useState('');
-    const [category, setCategory] = useState<CategoryFilter>('all');
 
-    const counts = useMemo(() => countByCategory(CATALOG, query), [query]);
     const entries = useMemo(
-        () => filterCatalog(CATALOG, query, category),
-        [query, category],
+        () => filterCatalog(CATALOG, query),
+        [query],
     );
-
-    const tabs = useMemo(() => [
-        {key: 'all', label: 'All', countBadge: counts.all},
-        ...CATEGORIES.map((key) => ({
-            key,
-            label: CATEGORY_LABELS[key],
-            countBadge: counts[key],
-        })),
-    ], [counts]);
-
-    const sections = category === 'all' ? CATEGORIES : [category];
 
     return (
         <div className='CompassShowcase'>
@@ -47,79 +37,47 @@ export default function Gallery({onSelect}: Props) {
                     onChange={(event) => setQuery(event.target.value)}
                     onClear={() => setQuery('')}
                 />
-                <div className='CompassShowcase__tabs'>
-                    <Tabs
-                        tabs={tabs}
-                        activeKey={category}
-                        onChange={(key) => setCategory(key as CategoryFilter)}
-                    />
-                </div>
             </div>
             <Scrollbar className='CompassShowcase__scroll'>
                 {entries.length === 0 ? (
                     <EmptyState
                         title='No components match'
-                        description='Try a different search or category.'
+                        description='Try a different search.'
                         action={{
-                            children: 'Clear filters',
-                            onClick: () => {
-                                setQuery('');
-                                setCategory('all');
-                            },
+                            children: 'Clear search',
+                            onClick: () => setQuery(''),
                         }}
                     />
                 ) : (
-                    <div className='CompassShowcase__body'>
-                        {sections.map((section) => {
+                    <div className='CompassShowcase__list'>
+                        {CATEGORIES.map((section) => {
                             const items = entries.filter((entry) => entry.category === section);
                             if (items.length === 0) {
                                 return null;
                             }
                             return (
-                                <section
+                                <PopoverMenuGroup
                                     key={section}
-                                    className='CompassShowcase__section'
+                                    aria-label={CATEGORY_LABELS[section]}
                                 >
-                                    <h2 className='CompassShowcase__sectionTitle'>
+                                    <PopoverMenuGroupTitle>
                                         {CATEGORY_LABELS[section]}
-                                    </h2>
+                                    </PopoverMenuGroupTitle>
                                     {items.map((entry) => (
-                                        <CatalogCard
+                                        <MenuItem
                                             key={entry.id}
-                                            entry={entry}
-                                            onSelect={onSelect}
+                                            label={entry.name}
+                                            leadingElement={false}
+                                            type='button'
+                                            onClick={() => onSelect(entry.id)}
                                         />
                                     ))}
-                                </section>
+                                </PopoverMenuGroup>
                             );
                         })}
                     </div>
                 )}
             </Scrollbar>
         </div>
-    );
-}
-
-type CardProps = {
-    entry: CatalogEntry;
-    onSelect: (id: string) => void;
-};
-
-function CatalogCard({entry, onSelect}: CardProps) {
-    const Preview = entry.preview;
-
-    return (
-        <button
-            type='button'
-            className='CompassShowcase__card'
-            onClick={() => onSelect(entry.id)}
-        >
-            <div className='CompassShowcase__cardPreview'>
-                <Preview/>
-            </div>
-            <p className='CompassShowcase__cardName'>
-                {entry.name}
-            </p>
-        </button>
     );
 }

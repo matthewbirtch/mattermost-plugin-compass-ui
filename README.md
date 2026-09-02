@@ -4,7 +4,7 @@ Mattermost plugin that showcases live [`@mattermost/compass-ui`](https://www.npm
 
 Repository: [https://github.com/matthewbirtch/compass-ui-plugin](https://github.com/matthewbirtch/compass-ui-plugin)
 
-Open the RHS from the channel header palette button or the App Bar icon. Browse a searchable category gallery, then open a component to see live variants.
+Open the RHS from the channel header palette button or the App Bar icon. Search the component list (grouped by category), then open a row to see live variants.
 
 This plugin bundles the published npm package (`@mattermost/compass-ui@0.1.0-alpha.5`). It does not resolve Compass UI from the Mattermost webapp or from a local `file:` link.
 

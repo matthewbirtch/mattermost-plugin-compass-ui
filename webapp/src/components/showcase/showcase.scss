@@ -15,15 +15,9 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    padding: 16px 16px 0;
+    padding: 16px 16px 12px;
     background: var(--center-channel-bg);
     border-bottom: 1px solid rgba(var(--center-channel-color-rgb), 0.08);
-}
-
-.CompassShowcase__tabs {
-    overflow-x: auto;
-    margin: 0 -16px;
-    padding: 0 16px 4px;
 }
 
 .CompassShowcase__scroll {
@@ -31,58 +25,17 @@
     min-height: 0;
 }
 
+.CompassShowcase__list {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 0 16px;
+}
+
 .CompassShowcase__body {
     display: flex;
     flex-direction: column;
     gap: 16px;
     padding: 16px;
-}
-
-.CompassShowcase__section {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.CompassShowcase__sectionTitle {
-    margin: 0;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: rgba(var(--center-channel-color-rgb), 0.72);
-}
-
-.CompassShowcase__card {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    width: 100%;
-    padding: 12px;
-    border: 1px solid rgba(var(--center-channel-color-rgb), 0.16);
-    border-radius: 8px;
-    background: var(--center-channel-bg);
-    color: inherit;
-    text-align: left;
-    cursor: pointer;
-}
-
-.CompassShowcase__card:hover,
-.CompassShowcase__card:focus-visible {
-    border-color: rgba(var(--center-channel-color-rgb), 0.32);
-    background: rgba(var(--center-channel-color-rgb), 0.04);
-}
-
-.CompassShowcase__cardPreview {
-    pointer-events: none;
-    min-height: 36px;
-    overflow: hidden;
-}
-
-.CompassShowcase__cardName {
-    margin: 0;
-    font-size: 14px;
-    font-weight: 600;
 }
 
 .CompassShowcase__detailHeader {
