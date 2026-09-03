@@ -10,19 +10,21 @@ import {PopoverMenu} from '@mattermost/compass-ui/components/popover-menu';
 import {ProfilePopover} from '@mattermost/compass-ui/components/profile-popover';
 import {TourPoint} from '@mattermost/compass-ui/components/tour-point';
 
-import {Note} from './shared';
+import {Note, WidePreview} from './shared';
 
 export function ModalPreview() {
     return (
-        <Modal
-            onClose={() => undefined}
-            title='Rename channel'
-            footer={(
-                <Button>{'Save'}</Button>
-            )}
-        >
-            {'This surface is mount-controlled chrome. The host owns portal and focus trap.'}
-        </Modal>
+        <WidePreview>
+            <Modal
+                onClose={() => undefined}
+                title='Rename channel'
+                footer={(
+                    <Button>{'Save'}</Button>
+                )}
+            >
+                {'This surface is mount-controlled chrome. The host owns portal and focus trap.'}
+            </Modal>
+        </WidePreview>
     );
 }
 

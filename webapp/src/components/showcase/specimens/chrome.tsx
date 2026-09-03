@@ -16,13 +16,15 @@ import {
 } from '@mattermost/compass-ui/components/right-sidebar';
 import {TeamSidebar} from '@mattermost/compass-ui/components/team-sidebar';
 
-import {Excerpt, Note} from './shared';
+import {Excerpt, Note, WidePreview} from './shared';
 
 export function GlobalHeaderPreview() {
     return (
-        <Excerpt>
-            <GlobalHeader userAvatarAlt='You'/>
-        </Excerpt>
+        <WidePreview>
+            <Excerpt>
+                <GlobalHeader userAvatarAlt='You'/>
+            </Excerpt>
+        </WidePreview>
     );
 }
 
@@ -44,12 +46,14 @@ export function GlobalHeaderDetail() {
 
 export function ChannelHeaderPreview() {
     return (
-        <Excerpt>
-            <ChannelHeader
-                memberCount={12}
-                name='UX Design'
-            />
-        </Excerpt>
+        <WidePreview>
+            <Excerpt>
+                <ChannelHeader
+                    memberCount={12}
+                    name='UX Design'
+                />
+            </Excerpt>
+        </WidePreview>
     );
 }
 
@@ -177,7 +181,9 @@ export function RightSidebarDetail() {
 
 export function AdminConsoleHeaderPreview() {
     return (
-        <AdminConsoleHeader title='Site statistics'/>
+        <WidePreview>
+            <AdminConsoleHeader title='Site statistics'/>
+        </WidePreview>
     );
 }
 
@@ -194,10 +200,12 @@ export function AdminConsoleHeaderDetail() {
 
 export function FeatureDiscoveryPanelPreview() {
     return (
-        <FeatureDiscoveryPanel
-            description='Advanced compliance exports are available on a higher plan.'
-            title='Compliance export'
-        />
+        <WidePreview>
+            <FeatureDiscoveryPanel
+                description='Advanced compliance exports are available on a higher plan.'
+                title='Compliance export'
+            />
+        </WidePreview>
     );
 }
 

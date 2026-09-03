@@ -8,7 +8,7 @@ import {EmptyState} from '@mattermost/compass-ui/components/empty-state';
 import {Scrollbar} from '@mattermost/compass-ui/components/scrollbar';
 import {Tabs} from '@mattermost/compass-ui/components/tabs';
 
-import {Note, Variant} from './shared';
+import {Note, Variant, WidePreview} from './shared';
 
 export function DividerPreview() {
     return (
@@ -28,10 +28,12 @@ export function DividerDetail() {
 
 export function EmptyStatePreview() {
     return (
-        <EmptyState
-            description='Saved messages will show up here.'
-            title='No saved messages'
-        />
+        <WidePreview>
+            <EmptyState
+                description='Saved messages will show up here.'
+                title='No saved messages'
+            />
+        </WidePreview>
     );
 }
 

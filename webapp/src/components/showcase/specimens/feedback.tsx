@@ -9,7 +9,7 @@ import {SectionNotice} from '@mattermost/compass-ui/components/section-notice';
 import {Toast} from '@mattermost/compass-ui/components/toast';
 import {Tooltip} from '@mattermost/compass-ui/components/tooltip';
 
-import {Note, Variant} from './shared';
+import {Note, Variant, WidePreview} from './shared';
 
 export function ErrorMessagePreview() {
     return (
@@ -25,11 +25,13 @@ export function ErrorMessageDetail() {
 
 export function SectionNoticePreview() {
     return (
-        <SectionNotice
-            title='Invite teammates'
-            description='Share this workspace with people who should see Compass UI.'
-            type='info'
-        />
+        <WidePreview>
+            <SectionNotice
+                title='Invite teammates'
+                description='Share this workspace with people who should see Compass UI.'
+                type='info'
+            />
+        </WidePreview>
     );
 }
 

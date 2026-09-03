@@ -10,6 +10,8 @@ import {MoreUnreadsBanner} from '@mattermost/compass-ui/components/more-unreads-
 import {NewMessageBanner} from '@mattermost/compass-ui/components/new-message-banner';
 import {SearchTipBanner} from '@mattermost/compass-ui/components/search-tip-banner';
 
+import {WidePreview} from './shared';
+
 export function GlobalBannerPreview() {
     return (
         <GlobalBanner
@@ -77,7 +79,9 @@ export function NewMessageBannerDetail() {
 
 export function SearchTipBannerPreview() {
     return (
-        <SearchTipBanner/>
+        <WidePreview>
+            <SearchTipBanner/>
+        </WidePreview>
     );
 }
 
