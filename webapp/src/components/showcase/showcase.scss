@@ -70,6 +70,11 @@
     background: var(--center-channel-bg);
 }
 
+// Detail has no SearchInput; drop chrome's leftover 8px under the title block.
+.CompassShowcase__chrome--detail {
+    padding-bottom: 0;
+}
+
 .CompassShowcase__scroll {
     flex: 1 1 auto;
     min-height: 0;
@@ -191,6 +196,10 @@
     flex-direction: column;
     gap: 16px;
     padding: 16px;
+}
+
+.CompassShowcase__body--detail {
+    padding-top: 8px;
 }
 
 .CompassShowcase__detailHeader {
