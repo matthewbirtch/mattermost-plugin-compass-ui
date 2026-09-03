@@ -70,9 +70,10 @@
     background: var(--center-channel-bg);
 }
 
-// Detail has no SearchInput; drop chrome's leftover 8px under the title block.
+// Detail has no SearchInput. Restore a modest pad under the title block
+// (8px chrome + 8px body padding-top) without the old 24px gap.
 .CompassShowcase__chrome--detail {
-    padding-bottom: 0;
+    padding-bottom: var(--spacing-s, 8px);
 }
 
 .CompassShowcase__scroll {
