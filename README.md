@@ -6,7 +6,7 @@ Repository: [https://github.com/matthewbirtch/compass-ui-plugin](https://github.
 
 Open the RHS from the channel header palette button or the App Bar icon. Search the category grid, then open a card to see live variants. The grid is three columns at the default RHS width and adds or drops columns as the sidebar is resized.
 
-This plugin bundles the published npm package (`@mattermost/compass-ui@0.1.0-alpha.5`). It does not resolve Compass UI from the Mattermost webapp or from a local `file:` link.
+This plugin bundles the published npm package (`@mattermost/compass-ui@0.1.0-alpha.6`). It does not resolve Compass UI from the Mattermost webapp or from a local `file:` link.
 
 ## Requirements
 
