@@ -157,6 +157,9 @@ describe('EmptyState specimens', () => {
         expect(svg?.getAttribute('viewBox')).toEqual('0 0 160 96');
         expect(container.querySelectorAll('circle').length).toBeGreaterThan(0);
         expect(container.querySelectorAll('polygon').length).toBeGreaterThan(0);
+        expect(container.querySelectorAll('ellipse').length).toBeGreaterThan(0);
+        expect(container.querySelector('rect[width="160"][height="96"]')).toBeNull();
+        expect(container.querySelector('rect[fill="rgba(var(--button-bg-rgb), 0.12)"]')).toBeNull();
     }
 
     it('passes the shared Compass illustration into the gallery preview', () => {

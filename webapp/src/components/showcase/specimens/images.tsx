@@ -171,12 +171,6 @@ export function IllustrationMark() {
             viewBox='0 0 160 96'
             xmlns='http://www.w3.org/2000/svg'
         >
-            <rect
-                fill='rgba(var(--button-bg-rgb), 0.12)'
-                height='96'
-                rx='12'
-                width='160'
-            />
             <ellipse
                 cx='80'
                 cy='80'

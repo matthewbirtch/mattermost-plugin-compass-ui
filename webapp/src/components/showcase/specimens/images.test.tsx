@@ -46,32 +46,30 @@ describe('Illustration specimens', () => {
         rendered?.unmount();
     });
 
+    function expectCompassMark(container: HTMLElement) {
+        const svg = container.querySelector('svg');
+
+        expect(container.querySelector('[aria-label="Sample illustration"]')).not.toBeNull();
+        expect(svg?.getAttribute('viewBox')).toEqual('0 0 160 96');
+        expect(container.querySelectorAll('circle').length).toBeGreaterThan(0);
+        expect(container.querySelectorAll('polygon').length).toBeGreaterThan(0);
+        expect(container.querySelectorAll('ellipse').length).toBeGreaterThan(0);
+        expect(container.querySelector('rect[width="160"][height="96"]')).toBeNull();
+        expect(container.querySelector('rect[fill="rgba(var(--button-bg-rgb), 0.12)"]')).toBeNull();
+    }
+
     it('renders an original SVG mark in the gallery preview', () => {
         const view = render(<IllustrationPreview/>);
         rendered = view;
 
-        const svg = view.container.querySelector('svg');
-        const circles = view.container.querySelectorAll('circle');
-        const polygons = view.container.querySelectorAll('polygon');
-
-        expect(view.container.querySelector('[aria-label="Sample illustration"]')).not.toBeNull();
-        expect(svg?.getAttribute('viewBox')).toEqual('0 0 160 96');
-        expect(circles.length).toBeGreaterThan(0);
-        expect(polygons.length).toBeGreaterThan(0);
+        expectCompassMark(view.container);
     });
 
     it('renders the same original SVG mark in the detail view', () => {
         const view = render(<IllustrationDetail/>);
         rendered = view;
 
-        const svg = view.container.querySelector('svg');
-        const circles = view.container.querySelectorAll('circle');
-        const polygons = view.container.querySelectorAll('polygon');
-
-        expect(view.container.querySelector('[aria-label="Sample illustration"]')).not.toBeNull();
-        expect(svg?.getAttribute('viewBox')).toEqual('0 0 160 96');
-        expect(circles.length).toBeGreaterThan(0);
-        expect(polygons.length).toBeGreaterThan(0);
+        expectCompassMark(view.container);
     });
 });
 
