@@ -7,6 +7,57 @@
     color: var(--center-channel-color);
 }
 
+.CompassShowcase__nav {
+    position: relative;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.CompassShowcase__pane {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.CompassShowcase__pane--root {
+    transition: transform var(--duration-moderate) var(--ease-exit);
+}
+
+.CompassShowcase__nav--pushed .CompassShowcase__pane--root {
+    pointer-events: none;
+    transform: translateX(-25%);
+    transition-timing-function: var(--ease-entrance);
+}
+
+.CompassShowcase__pane--push {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    background: var(--center-channel-bg);
+    box-shadow: -4px 0 16px rgba(var(--center-channel-color-rgb), 0.08);
+    transform: translateX(100%);
+    transition: transform var(--duration-moderate) var(--ease-exit);
+}
+
+.CompassShowcase__nav--pushed .CompassShowcase__pane--push {
+    transform: translateX(0);
+    transition-timing-function: var(--ease-entrance);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .CompassShowcase__pane--root,
+    .CompassShowcase__pane--push {
+        transition-duration: 0ms;
+    }
+
+    .CompassShowcase__nav--pushed .CompassShowcase__pane--root,
+    .CompassShowcase__nav--pushed .CompassShowcase__pane--push {
+        transform: none;
+    }
+}
+
 .CompassShowcase__chrome {
     flex: 0 0 auto;
     position: sticky;
@@ -52,9 +103,7 @@
     gap: 16px 12px;
 }
 
-/* Native buttons center their contents; appearance:none drops that inner box. */
-.CompassShowcase button.CompassShowcase__card {
-    appearance: none;
+.CompassShowcase__card {
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -68,12 +117,6 @@
     color: inherit;
     text-align: left;
     cursor: pointer;
-}
-
-.CompassShowcase button.CompassShowcase__card > * {
-    width: 100%;
-    align-self: stretch;
-    text-align: left;
 }
 
 .CompassShowcase__cardPreview {
@@ -111,19 +154,22 @@
 .CompassShowcase__cardMeta {
     display: flex;
     flex-direction: column;
-    align-items: stretch;
+    align-items: flex-start;
     gap: 2px;
     width: 100%;
     min-width: 0;
     text-align: left;
 }
 
-.CompassShowcase button.CompassShowcase__card .CompassShowcase__cardName,
-.CompassShowcase button.CompassShowcase__card .CompassShowcase__cardPath {
+.CompassShowcase__cardName,
+.CompassShowcase__cardPath {
     display: block;
-    width: 100%;
+    align-self: flex-start;
+    box-sizing: border-box;
+    max-width: 100%;
+    margin: 0;
     overflow: hidden;
-    text-align: left;
+    text-align: left !important;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
