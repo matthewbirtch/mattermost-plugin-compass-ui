@@ -107,21 +107,25 @@ export function ProfilePopoverDetail() {
 
 export function TourPointPreview() {
     return (
-        <TourPoint title='Browse components'>
-            {'Search or filter by category, then open a card for live variants.'}
-        </TourPoint>
+        <div className='CompassShowcase__tourPointPreview'>
+            <TourPoint title='Browse components'>
+                {'Search or filter by category, then open a card for live variants.'}
+            </TourPoint>
+        </div>
     );
 }
 
 export function TourPointDetail() {
     return (
-        <TourPoint
-            pointerPosition='top-left'
-            primaryAction={{label: 'Next'}}
-            progress={{pages: 3, activePage: 1}}
-            title='Compass UI'
-        >
-            {'This plugin is a production-style consumer of the published npm package.'}
-        </TourPoint>
+        <div className='CompassShowcase__tourPointDetail'>
+            <TourPoint
+                pointerPosition='top-left'
+                primaryAction={{label: 'Next'}}
+                progress={{pages: 3, activePage: 1}}
+                title='Compass UI'
+            >
+                {'This plugin is a production-style consumer of the published npm package.'}
+            </TourPoint>
+        </div>
     );
 }

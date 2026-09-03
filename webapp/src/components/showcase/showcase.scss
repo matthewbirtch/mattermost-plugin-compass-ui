@@ -288,6 +288,21 @@
     padding: 96px;
 }
 
+// Tour Point's pointer sits 9px outside the card. The pulsing-dot ring is a
+// 12px origin inside a 40px box and animates to scale(4.25) (~51px), so the
+// ring extends ~35px past the card on the pointer side. Padding keeps that
+// paint inside overflow:hidden tiles and SimpleBar — do not set cardPreview
+// overflow:visible (that would break rounded clipping of other previews).
+.CompassShowcase__tourPointPreview {
+    box-sizing: content-box;
+    padding: 40px;
+}
+
+.CompassShowcase__tourPointDetail {
+    padding: 40px 16px 0;
+    overflow: visible;
+}
+
 .CompassShowcase__stack {
     display: flex;
     flex-direction: column;
