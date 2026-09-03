@@ -65,15 +65,15 @@
     z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 16px 16px 8px;
+    gap: var(--spacing-m, 12px);
+    padding: var(--spacing-l, 16px) var(--spacing-l, 16px) var(--spacing-xs, 8px);
     background: var(--center-channel-bg);
 }
 
 // Detail has no SearchInput. Equal 16px chrome padding on all sides so the
 // title block is not tighter on the bottom than the top.
 .CompassShowcase__chrome--detail {
-    padding: 16px;
+    padding: var(--spacing-l, 16px);
 }
 
 .CompassShowcase__scroll {
@@ -85,13 +85,13 @@
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xxxl, 32px);
-    padding: 16px;
+    padding: var(--spacing-l, 16px);
 }
 
 .CompassShowcase__section {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--spacing-m, 12px);
     min-width: 0;
 }
 
@@ -106,7 +106,7 @@
 .CompassShowcase__grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 110px), 1fr));
-    gap: 16px 12px;
+    gap: var(--spacing-l, 16px) var(--spacing-m, 12px);
 }
 
 .CompassShowcase__card {
@@ -114,7 +114,7 @@
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    gap: 8px;
+    gap: var(--spacing-xs, 8px);
     width: 100%;
     min-width: 0;
     padding: 0;
@@ -168,7 +168,7 @@
     justify-content: center;
     width: max-content;
     max-width: 280px;
-    padding: 12px;
+    padding: var(--spacing-m, 12px);
     transform-origin: top left;
     text-align: left;
 }
@@ -177,7 +177,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 2px;
+    gap: var(--spacing-xxxxs, 2px);
     width: 100%;
     min-width: 0;
     text-align: left;
@@ -202,25 +202,25 @@
 .CompassShowcase__body {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 16px;
+    gap: var(--spacing-l, 16px);
+    padding: var(--spacing-l, 16px);
 }
 
 .CompassShowcase__body--detail {
-    gap: var(--spacing-xl, 24px);
-    padding-top: 8px;
+    gap: var(--spacing-xxl, 24px);
+    padding-top: var(--spacing-xs, 8px);
 }
 
 .CompassShowcase__detailHeader {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    gap: var(--spacing-xs, 8px);
 }
 
 .CompassShowcase__detailCopy {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--spacing-xxxs, 4px);
     min-width: 0;
 }
 
@@ -242,13 +242,13 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
+    gap: var(--spacing-xs, 8px);
 }
 
 .CompassShowcase__variant {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--spacing-xs, 8px);
 }
 
 .CompassShowcase__variantLabel {
@@ -260,7 +260,7 @@
 .CompassShowcase__variantLive {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--spacing-xs, 8px);
     min-width: 0;
 }
 
@@ -284,7 +284,7 @@
     flex: 0 0 auto;
     width: 480px;
     max-width: 480px;
-    padding: 48px;
+    padding: var(--spacing-xxxxxl, 48px);
 }
 
 // Global Banner is width:100%, so even a 480px stage still reads as a
@@ -308,7 +308,7 @@
     width: 280px;
     max-width: 280px;
     height: 32px;
-    padding: 16px 20px;
+    padding: var(--spacing-l, 16px) var(--spacing-xl, 20px);
 }
 
 // Search Tip Banner is width:fit-content. Without centering it sits at the
@@ -337,11 +337,11 @@
 // overflow:visible (that would break rounded clipping of other previews).
 .CompassShowcase__tourPointPreview {
     box-sizing: content-box;
-    padding: 40px;
+    padding: var(--spacing-xxxxl, 40px);
 }
 
 .CompassShowcase__tourPointDetail {
-    padding: 40px 16px 0;
+    padding: var(--spacing-xxxxl, 40px) var(--spacing-l, 16px) 0;
     overflow: visible;
 }
 
@@ -361,7 +361,7 @@
 
 .CompassShowcase__scrollbarDemo {
     box-sizing: border-box;
-    padding: 8px;
+    padding: var(--spacing-xs, 8px);
     border-radius: var(--radius-s, 4px);
     background: rgba(var(--center-channel-color-rgb), 0.06);
 }
@@ -383,7 +383,7 @@
 .CompassShowcase__scrollbarDemoLine {
     display: block;
     height: 8px;
-    margin-bottom: 8px;
+    margin-bottom: var(--spacing-xs, 8px);
     border-radius: 2px;
     background: rgba(var(--center-channel-color-rgb), 0.16);
 
@@ -396,10 +396,10 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
+    gap: var(--spacing-xs, 8px);
     width: fit-content;
     max-width: 100%;
-    padding: 12px;
+    padding: var(--spacing-m, 12px);
     border-radius: var(--radius-m, 8px);
     background: var(--sidebar-header-bg);
 }
