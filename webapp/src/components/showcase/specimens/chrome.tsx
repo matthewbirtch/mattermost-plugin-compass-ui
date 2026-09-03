@@ -16,7 +16,15 @@ import {
 } from '@mattermost/compass-ui/components/right-sidebar';
 import {TeamSidebar} from '@mattermost/compass-ui/components/team-sidebar';
 
+import {IllustrationMark} from './images';
 import {Excerpt, Note, WidePreview} from './shared';
+
+const featureDiscoveryIllustration = {
+    'aria-label': 'Sample illustration',
+    children: <IllustrationMark/>,
+    height: '96px',
+    width: '160px',
+};
 
 export function GlobalHeaderPreview() {
     return (
@@ -203,6 +211,7 @@ export function FeatureDiscoveryPanelPreview() {
         <WidePreview>
             <FeatureDiscoveryPanel
                 description='Advanced compliance exports are available on a higher plan.'
+                illustration={featureDiscoveryIllustration}
                 title='Compliance export'
             />
         </WidePreview>
@@ -213,6 +222,7 @@ export function FeatureDiscoveryPanelDetail() {
     return (
         <FeatureDiscoveryPanel
             description='Unlock guest accounts and advanced permissions.'
+            illustration={featureDiscoveryIllustration}
             primaryAction={{children: 'View plans'}}
             skuLabel='ENTERPRISE'
             title='Guest accounts'
