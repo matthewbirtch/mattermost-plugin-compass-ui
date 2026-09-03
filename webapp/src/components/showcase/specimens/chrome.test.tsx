@@ -12,14 +12,6 @@ jest.mock('@mattermost/compass-ui/components/admin-console-header', () => ({
     AdminConsoleHeader: () => null,
 }));
 
-jest.mock('@mattermost/compass-ui/components/app-bar-item', () => ({
-    AppBarItem: () => null,
-}));
-
-jest.mock('@mattermost/compass-ui/components/channel-header', () => ({
-    ChannelHeader: () => null,
-}));
-
 jest.mock('@mattermost/compass-ui/components/feature-discovery-panel', () => ({
     FeatureDiscoveryPanel: ({
         description,
@@ -65,12 +57,7 @@ jest.mock('@mattermost/compass-ui/components/global-header', () => ({
     GlobalHeader: () => null,
 }));
 
-jest.mock('@mattermost/compass-ui/components/icon', () => ({
-    Icon: () => null,
-}));
-
-jest.mock('@mattermost/compass-ui/components/right-sidebar', () => ({
-    RightSidebar: () => null,
+jest.mock('@mattermost/compass-ui/components/right-sidebar-header', () => ({
     RightSidebarHeader: () => null,
 }));
 

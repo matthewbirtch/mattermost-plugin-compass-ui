@@ -3,43 +3,12 @@
 
 import React from 'react';
 
-import {Message} from '@mattermost/compass-ui/components/message';
 import {MessageHeader} from '@mattermost/compass-ui/components/message-header';
-import {MessageInput} from '@mattermost/compass-ui/components/message-input';
 import {MessageSeparator} from '@mattermost/compass-ui/components/message-separator';
 import {ThreadFooter} from '@mattermost/compass-ui/components/thread-footer';
 import {ThreadListItem} from '@mattermost/compass-ui/components/thread-list-item';
 
 import {Note, WidePreview} from './shared';
-
-export function MessagePreview() {
-    return (
-        <WidePreview>
-            <Message
-                avatarAlt='Aiko Tan'
-                timestamp='10:04 AM'
-                username='Aiko Tan'
-                showMessageActions={false}
-            >
-                {'The RHS gallery is a Compass consumer, not a copy of Storybook.'}
-            </Message>
-        </WidePreview>
-    );
-}
-
-export function MessageDetail() {
-    return (
-        <Message
-            avatarAlt='Leonard Riley'
-            timestamp='Yesterday'
-            username='Leonard Riley'
-            showMessageActions={true}
-            showPinnedSavedIndicators={true}
-        >
-            {'Pinned and saved indicators sit above the body when enabled.'}
-        </Message>
-    );
-}
 
 export function MessageHeaderPreview() {
     return (
@@ -56,27 +25,6 @@ export function MessageHeaderDetail() {
             isBot={true}
             timestamp='9:41 AM'
             username='Welcome Bot'
-        />
-    );
-}
-
-export function MessageInputPreview() {
-    return (
-        <div className='CompassShowcase__messageInputPreview'>
-            <MessageInput
-                placeholder='Reply…'
-                width='narrow'
-            />
-        </div>
-    );
-}
-
-export function MessageInputDetail() {
-    return (
-        <MessageInput
-            placeholder='Write to Town Square'
-            showPriorityIndicator={true}
-            width='narrow'
         />
     );
 }

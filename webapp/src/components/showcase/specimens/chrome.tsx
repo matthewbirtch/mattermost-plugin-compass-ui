@@ -3,17 +3,10 @@
 
 import React from 'react';
 
-import PaletteOutlineIcon from '@mattermost/compass-icons/components/palette-outline';
 import {AdminConsoleHeader} from '@mattermost/compass-ui/components/admin-console-header';
-import {AppBarItem} from '@mattermost/compass-ui/components/app-bar-item';
-import {ChannelHeader} from '@mattermost/compass-ui/components/channel-header';
 import {FeatureDiscoveryPanel} from '@mattermost/compass-ui/components/feature-discovery-panel';
 import {GlobalHeader} from '@mattermost/compass-ui/components/global-header';
-import {Icon} from '@mattermost/compass-ui/components/icon';
-import {
-    RightSidebar,
-    RightSidebarHeader,
-} from '@mattermost/compass-ui/components/right-sidebar';
+import {RightSidebarHeader} from '@mattermost/compass-ui/components/right-sidebar-header';
 import {TeamSidebar} from '@mattermost/compass-ui/components/team-sidebar';
 
 import {IllustrationMark} from './images';
@@ -52,38 +45,6 @@ export function GlobalHeaderDetail() {
     );
 }
 
-export function ChannelHeaderPreview() {
-    return (
-        <WidePreview>
-            <Excerpt>
-                <ChannelHeader
-                    memberCount={12}
-                    name='UX Design'
-                />
-            </Excerpt>
-        </WidePreview>
-    );
-}
-
-export function ChannelHeaderDetail() {
-    return (
-        <>
-            <Note>
-                {'Channel Header is a layout excerpt; actions may clip at RHS width.'}
-            </Note>
-            <Excerpt>
-                <ChannelHeader
-                    description='Compass UI plugin'
-                    favorited={true}
-                    memberCount={8}
-                    name='compass-ui'
-                    pinnedCount={2}
-                />
-            </Excerpt>
-        </>
-    );
-}
-
 export function TeamSidebarPreview() {
     return (
         <TeamSidebar
@@ -110,78 +71,25 @@ export function TeamSidebarDetail() {
     );
 }
 
-export function AppBarItemPreview() {
-    return (
-        <AppBarItem
-            icon={(
-                <Icon
-                    glyph={<PaletteOutlineIcon/>}
-                    size='20'
-                />
-            )}
-            label='Compass UI'
-        />
-    );
-}
-
-export function AppBarItemDetail() {
-    return (
-        <div className='CompassShowcase__row'>
-            <AppBarItem
-                icon={(
-                    <Icon
-                        glyph={<PaletteOutlineIcon/>}
-                        size='20'
-                    />
-                )}
-                label='Compass UI'
-            />
-            <AppBarItem
-                icon={(
-                    <Icon
-                        glyph={<PaletteOutlineIcon/>}
-                        size='20'
-                    />
-                )}
-                label='Compass UI selected'
-                mentionBadge={2}
-                state='selected'
-            />
-        </div>
-    );
-}
-
-export function RightSidebarPreview() {
+export function RightSidebarHeaderPreview() {
     return (
         <Excerpt>
-            <RightSidebar
-                header={(
-                    <RightSidebarHeader title='Thread'/>
-                )}
-            >
-                {'This plugin fills Mattermost RHS; Compass RightSidebar is catalog chrome only.'}
-            </RightSidebar>
+            <RightSidebarHeader title='Thread'/>
         </Excerpt>
     );
 }
 
-export function RightSidebarDetail() {
+export function RightSidebarHeaderDetail() {
     return (
         <>
             <Note>
-                {'Do not wrap this plugin in Compass RightSidebar — Mattermost already draws the RHS chrome. Shown here as a catalog excerpt.'}
+                {'Do not wrap this plugin in Compass RHS chrome — Mattermost already draws the RHS. Shown here as a catalog excerpt.'}
             </Note>
             <Excerpt>
-                <RightSidebar
-                    header={(
-                        <RightSidebarHeader
-                            title='Channel info'
-                            onClose={() => undefined}
-                        />
-                    )}
-                >
-                    {'Body content scrolls independently of the header.'}
-                </RightSidebar>
+                <RightSidebarHeader
+                    title='Channel info'
+                    onClose={() => undefined}
+                />
             </Excerpt>
         </>
     );

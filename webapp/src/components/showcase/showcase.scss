@@ -320,16 +320,6 @@
     justify-content: center;
 }
 
-// Message Input is width:100%, so even a 480px stage still reads as a squeezed
-// full-width composer. Extra padding shrinks it into a thumbnail with gutters.
-.CompassShowcase__messageInputPreview {
-    box-sizing: content-box;
-    flex: 0 0 auto;
-    width: 480px;
-    max-width: 480px;
-    padding: 96px;
-}
-
 // Tour Point's pointer sits 9px outside the card. The pulsing-dot ring is a
 // 12px origin inside a 40px box and animates to scale(4.25) (~51px), so the
 // ring extends ~35px past the card on the pointer side. Padding keeps that
