@@ -50,7 +50,7 @@ export function EmptyStateDetail() {
 export function ScrollbarPreview() {
     return (
         <Scrollbar style={{height: 72}}>
-            <div style={{padding: 8}}>
+            <div className='CompassShowcase__scrollbarDemo'>
                 {'Compass Scrollbar wraps overflowing content with a thin thumb.'}
                 <br/>
                 {'Keep scrolling to see the track.'}
@@ -67,7 +67,10 @@ export function ScrollbarDetail() {
             alwaysVisible={true}
             style={{height: 96}}
         >
-            <div style={{padding: 8, height: 180}}>
+            <div
+                className='CompassShowcase__scrollbarDemo'
+                style={{height: 180}}
+            >
                 {'alwaysVisible keeps the thumb on screen while content overflows.'}
             </div>
         </Scrollbar>

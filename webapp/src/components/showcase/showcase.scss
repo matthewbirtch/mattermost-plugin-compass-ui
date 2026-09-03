@@ -295,6 +295,13 @@
     min-width: 0;
 }
 
+.CompassShowcase__scrollbarDemo {
+    box-sizing: border-box;
+    padding: 8px;
+    border-radius: var(--radius-s, 4px);
+    background: rgba(var(--center-channel-color-rgb), 0.06);
+}
+
 // Mattermost `label { font-weight: 600 }` inherits into Compass Checkbox,
 // Radio, and Switch, which render as <label> without setting font-weight.
 .CompassShowcase__stack > label,
