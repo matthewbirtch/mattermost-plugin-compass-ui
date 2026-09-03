@@ -83,7 +83,7 @@
 .CompassShowcase__sections {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: var(--spacing-xxxl, 32px);
     padding: 16px;
 }
 
@@ -293,6 +293,13 @@
     flex-direction: column;
     gap: 8px;
     min-width: 0;
+}
+
+// Pill-like children (More Unreads Banner) are inline-flex with no
+// width:fit-content. Default align-items:stretch would make them full-bleed.
+// Keep the default stack stretching for SectionNotice / Global Banner / etc.
+.CompassShowcase__stack--hug {
+    align-items: flex-start;
 }
 
 .CompassShowcase__scrollbarDemo {

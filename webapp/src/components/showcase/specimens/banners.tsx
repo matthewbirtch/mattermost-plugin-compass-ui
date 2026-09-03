@@ -52,7 +52,7 @@ export function MoreUnreadsBannerPreview() {
 
 export function MoreUnreadsBannerDetail() {
     return (
-        <div className='CompassShowcase__stack'>
+        <div className='CompassShowcase__stack CompassShowcase__stack--hug'>
             <MoreUnreadsBanner direction='up'/>
             <MoreUnreadsBanner direction='down'/>
         </div>
