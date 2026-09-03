@@ -58,12 +58,23 @@ export function MessageHeaderDetail() {
     );
 }
 
+// Wider than the 280px gallery stage, with padding, so ScaledPreview
+// shrinks the composer into a thumbnail instead of a squeezed full-width input.
 export function MessageInputPreview() {
     return (
-        <MessageInput
-            placeholder='Reply…'
-            width='narrow'
-        />
+        <div
+            style={{
+                boxSizing: 'border-box',
+                flexShrink: 0,
+                width: 640,
+                padding: 96,
+            }}
+        >
+            <MessageInput
+                placeholder='Reply…'
+                width='narrow'
+            />
+        </div>
     );
 }
 
