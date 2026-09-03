@@ -8,7 +8,15 @@ import {EmptyState} from '@mattermost/compass-ui/components/empty-state';
 import {Scrollbar} from '@mattermost/compass-ui/components/scrollbar';
 import {Tabs} from '@mattermost/compass-ui/components/tabs';
 
+import {IllustrationMark} from './images';
 import {Note, Variant, WidePreview} from './shared';
+
+const emptyStateIllustration = {
+    'aria-label': 'Sample illustration',
+    children: <IllustrationMark/>,
+    height: '96px',
+    width: '160px',
+};
 
 export function DividerPreview() {
     return (
@@ -38,6 +46,7 @@ export function EmptyStatePreview() {
         <WidePreview>
             <EmptyState
                 description='Saved messages will show up here.'
+                illustration={emptyStateIllustration}
                 title='No saved messages'
             />
         </WidePreview>
@@ -49,6 +58,7 @@ export function EmptyStateDetail() {
         <EmptyState
             action={{children: 'Clear search'}}
             description='Try a different name or category.'
+            illustration={emptyStateIllustration}
             title='No components match'
         />
     );

@@ -164,7 +164,7 @@ export function TeamAvatarDetail() {
     );
 }
 
-function IllustrationMark() {
+export function IllustrationMark() {
     return (
         <svg
             aria-hidden='true'

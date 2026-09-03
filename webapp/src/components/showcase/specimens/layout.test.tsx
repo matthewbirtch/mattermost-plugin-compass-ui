@@ -6,11 +6,47 @@ import {createRoot} from 'react-dom/client';
 import type {Root} from 'react-dom/client';
 import {act} from 'react-dom/test-utils';
 
-import {DividerDetail, DividerPreview, ScrollbarDetail, ScrollbarPreview} from './layout';
+import {DividerDetail, DividerPreview, EmptyStateDetail, EmptyStatePreview, ScrollbarDetail, ScrollbarPreview} from './layout';
 
 jest.mock('@mattermost/compass-ui/components/divider', () => ({
     Divider: () => (
         <hr data-testid='compass-divider'/>
+    ),
+}));
+
+jest.mock('@mattermost/compass-ui/components/empty-state', () => ({
+    EmptyState: ({
+        action,
+        description,
+        illustration,
+        title,
+    }: {
+        action?: {children?: React.ReactNode};
+        description?: React.ReactNode;
+        illustration?: {
+            children?: React.ReactNode;
+            'aria-label'?: string;
+            height?: string;
+            width?: string;
+        };
+        title: string;
+    }) => (
+        <div data-testid='empty-state'>
+            <div
+                aria-label={illustration?.['aria-label']}
+                data-height={illustration?.height}
+                data-width={illustration?.width}
+            >
+                {illustration?.children}
+            </div>
+            <h2>{title}</h2>
+            <p>{description}</p>
+            {action ? (
+                <button type='button'>
+                    {action.children}
+                </button>
+            ) : null}
+        </div>
     ),
 }));
 
@@ -35,6 +71,10 @@ jest.mock('@mattermost/compass-ui/components/scrollbar', () => ({
             {children}
         </div>
     ),
+}));
+
+jest.mock('@mattermost/compass-ui/components/tabs', () => ({
+    Tabs: () => null,
 }));
 
 type Rendered = {
@@ -97,6 +137,46 @@ describe('Divider specimens', () => {
         expect(children[0].textContent).toEqual('Above');
         expect(children[1].getAttribute('data-testid')).toEqual('compass-divider');
         expect(children[2].textContent).toEqual('Below');
+    });
+});
+
+describe('EmptyState specimens', () => {
+    let rendered: Rendered | undefined;
+
+    afterEach(() => {
+        rendered?.unmount();
+    });
+
+    function expectSharedIllustration(container: HTMLElement) {
+        const svg = container.querySelector('svg');
+        const mark = container.querySelector('[aria-label="Sample illustration"]') as HTMLElement | null;
+
+        expect(mark).not.toBeNull();
+        expect(mark?.getAttribute('data-height')).toEqual('96px');
+        expect(mark?.getAttribute('data-width')).toEqual('160px');
+        expect(svg?.getAttribute('viewBox')).toEqual('0 0 160 96');
+        expect(container.querySelectorAll('circle').length).toBeGreaterThan(0);
+        expect(container.querySelectorAll('polygon').length).toBeGreaterThan(0);
+    }
+
+    it('passes the shared Compass illustration into the gallery preview', () => {
+        const view = render(<EmptyStatePreview/>);
+        rendered = view;
+
+        expectSharedIllustration(view.container);
+        expect(view.container.querySelector('h2')?.textContent).toEqual('No saved messages');
+        expect(view.container.querySelector('p')?.textContent).toEqual('Saved messages will show up here.');
+        expect(view.container.querySelector('button')).toBeNull();
+    });
+
+    it('reuses the same Compass illustration in the detail view', () => {
+        const view = render(<EmptyStateDetail/>);
+        rendered = view;
+
+        expectSharedIllustration(view.container);
+        expect(view.container.querySelector('h2')?.textContent).toEqual('No components match');
+        expect(view.container.querySelector('p')?.textContent).toEqual('Try a different name or category.');
+        expect(view.container.querySelector('button')?.textContent).toEqual('Clear search');
     });
 });
 
