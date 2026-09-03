@@ -131,11 +131,18 @@
     border-radius: 12px;
     background: rgba(var(--center-channel-color-rgb), 0.08);
     text-align: left;
+    transition: background-color var(--duration-quick, 150ms) var(--ease-transition, ease-in-out);
 }
 
 .CompassShowcase__card:hover .CompassShowcase__cardPreview,
 .CompassShowcase__card:focus-visible .CompassShowcase__cardPreview {
     background: rgba(var(--center-channel-color-rgb), 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .CompassShowcase__cardPreview {
+        transition: none;
+    }
 }
 
 .CompassShowcase__cardScaler {
@@ -201,13 +208,15 @@
 
 .CompassShowcase__detailTitle {
     margin: 0;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
+    line-height: 20px;
 }
 
 .CompassShowcase__detailDescription {
     margin: 0;
-    font-size: 14px;
+    font-size: 12px;
+    line-height: 16px;
     color: rgba(var(--center-channel-color-rgb), 0.72);
 }
 
