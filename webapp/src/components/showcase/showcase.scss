@@ -261,6 +261,26 @@
     border-radius: 8px;
 }
 
+// Opt-in gallery-only stage: wider than the 280px card so ScaledPreview shrinks
+// chrome/messaging specimens into a miniature. Compact previews stay unwrapped.
+.CompassShowcase__widePreview {
+    box-sizing: content-box;
+    flex: 0 0 auto;
+    width: 480px;
+    max-width: 480px;
+    padding: 48px;
+}
+
+// Message Input is width:100%, so even a 480px stage still reads as a squeezed
+// full-width composer. Extra padding shrinks it into a thumbnail with gutters.
+.CompassShowcase__messageInputPreview {
+    box-sizing: content-box;
+    flex: 0 0 auto;
+    width: 480px;
+    max-width: 480px;
+    padding: 96px;
+}
+
 .CompassShowcase__stack {
     display: flex;
     flex-direction: column;

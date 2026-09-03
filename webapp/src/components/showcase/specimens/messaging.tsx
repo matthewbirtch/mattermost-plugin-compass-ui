@@ -10,18 +10,20 @@ import {MessageSeparator} from '@mattermost/compass-ui/components/message-separa
 import {ThreadFooter} from '@mattermost/compass-ui/components/thread-footer';
 import {ThreadListItem} from '@mattermost/compass-ui/components/thread-list-item';
 
-import {Note} from './shared';
+import {Note, WidePreview} from './shared';
 
 export function MessagePreview() {
     return (
-        <Message
-            avatarAlt='Aiko Tan'
-            timestamp='10:04 AM'
-            username='Aiko Tan'
-            showMessageActions={false}
-        >
-            {'The RHS gallery is a Compass consumer, not a copy of Storybook.'}
-        </Message>
+        <WidePreview>
+            <Message
+                avatarAlt='Aiko Tan'
+                timestamp='10:04 AM'
+                username='Aiko Tan'
+                showMessageActions={false}
+            >
+                {'The RHS gallery is a Compass consumer, not a copy of Storybook.'}
+            </Message>
+        </WidePreview>
     );
 }
 
@@ -58,18 +60,9 @@ export function MessageHeaderDetail() {
     );
 }
 
-// Wider than the 280px gallery stage, with padding, so ScaledPreview
-// shrinks the composer into a thumbnail instead of a squeezed full-width input.
 export function MessageInputPreview() {
     return (
-        <div
-            style={{
-                boxSizing: 'border-box',
-                flexShrink: 0,
-                width: 640,
-                padding: 96,
-            }}
-        >
+        <div className='CompassShowcase__messageInputPreview'>
             <MessageInput
                 placeholder='Reply…'
                 width='narrow'
@@ -130,10 +123,12 @@ export function ThreadFooterDetail() {
 
 export function ThreadListItemPreview() {
     return (
-        <ThreadListItem
-            authorName='Arjun Patel'
-            previewText='Let’s keep the specimens compact so they fit the RHS.'
-        />
+        <WidePreview>
+            <ThreadListItem
+                authorName='Arjun Patel'
+                previewText='Let’s keep the specimens compact so they fit the RHS.'
+            />
+        </WidePreview>
     );
 }
 

@@ -46,3 +46,11 @@ export function Excerpt({children}: {children: React.ReactNode}) {
         </div>
     );
 }
+
+export function WidePreview({children}: {children: React.ReactNode}) {
+    return (
+        <div className='CompassShowcase__widePreview'>
+            {children}
+        </div>
+    );
+}
