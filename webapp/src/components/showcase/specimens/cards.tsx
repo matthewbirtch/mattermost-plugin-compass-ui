@@ -81,47 +81,55 @@ export function ImagePreviewDetail() {
 
 export function LinkPreviewPreview() {
     return (
-        <LinkPreview
-            description='Design system components for Mattermost products.'
-            siteName='developers.mattermost.com'
-            title='Compass UI'
-        />
+        <div className='CompassShowcase__linkPreview'>
+            <LinkPreview
+                description='Design system components for Mattermost products.'
+                siteName='developers.mattermost.com'
+                title='Compass UI'
+            />
+        </div>
     );
 }
 
 export function LinkPreviewDetail() {
     return (
-        <LinkPreview
-            description='A searchable gallery of Compass components.'
-            imageAlt='Preview'
-            imageSize='small'
-            imageSrc={PLACEHOLDER_IMG}
-            siteName='github.com'
-            title='compass-ui-plugin'
-        />
+        <div className='CompassShowcase__linkPreview'>
+            <LinkPreview
+                description='A searchable gallery of Compass components.'
+                imageAlt='Preview'
+                imageSize='small'
+                imageSrc={PLACEHOLDER_IMG}
+                siteName='github.com'
+                title='compass-ui-plugin'
+            />
+        </div>
     );
 }
 
 export function PermalinkPreviewPreview() {
     return (
         <WidePreview>
-            <PermalinkPreview
-                authorName='Aiko Tan'
-                avatarSrc=''
-                messageText='The gallery should use Compass SearchInput and Tabs.'
-                originalChannel='~UX Design'
-            />
+            <div className='CompassShowcase__linkPreview'>
+                <PermalinkPreview
+                    authorName='Aiko Tan'
+                    avatarSrc=''
+                    messageText='The gallery should use Compass SearchInput and Tabs.'
+                    originalChannel='~UX Design'
+                />
+            </div>
         </WidePreview>
     );
 }
 
 export function PermalinkPreviewDetail() {
     return (
-        <PermalinkPreview
-            authorName='Leonard Riley'
-            avatarSrc=''
-            timestamp='Yesterday'
-            messageText='Ship the plugin against the published npm package, not a file: link.'
-        />
+        <div className='CompassShowcase__linkPreview'>
+            <PermalinkPreview
+                authorName='Leonard Riley'
+                avatarSrc=''
+                timestamp='Yesterday'
+                messageText='Ship the plugin against the published npm package, not a file: link.'
+            />
+        </div>
     );
 }

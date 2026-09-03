@@ -381,3 +381,16 @@
 .CompassShowcase__cardStage label {
     font-weight: inherit;
 }
+
+// Mattermost `p { margin: 1em 0 }` and heading margins leak into Compass
+// LinkPreview / PermalinkPreview, which render copy as <p> without setting
+// margin. Compass already uses a 4px flex gap on LinkPreview __text.
+.CompassShowcase__linkPreview {
+    p,
+    h1,
+    h2,
+    h3,
+    h4 {
+        margin: 0;
+    }
+}
