@@ -20,7 +20,7 @@ export default function Detail({entry, onBack}: Props) {
 
     return (
         <div className='CompassShowcase'>
-            <div className='CompassShowcase__chrome'>
+            <div className='CompassShowcase__chrome CompassShowcase__chrome--detail'>
                 <div className='CompassShowcase__detailHeader'>
                     <IconButton
                         aria-label='Back to gallery'
@@ -43,7 +43,7 @@ export default function Detail({entry, onBack}: Props) {
                 </div>
             </div>
             <Scrollbar className='CompassShowcase__scroll'>
-                <div className='CompassShowcase__body'>
+                <div className='CompassShowcase__body CompassShowcase__body--detail'>
                     <DetailView/>
                 </div>
             </Scrollbar>

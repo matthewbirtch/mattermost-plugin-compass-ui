@@ -147,7 +147,7 @@ export function TeamAvatarPreview() {
 
 export function TeamAvatarDetail() {
     return (
-        <Row>
+        <div className='CompassShowcase__sidebarWell'>
             <TeamAvatar
                 alt='Contributors'
                 initials='Co'
@@ -160,28 +160,98 @@ export function TeamAvatarDetail() {
                 size='40'
                 state='active'
             />
-        </Row>
+        </div>
+    );
+}
+
+export function IllustrationMark() {
+    return (
+        <svg
+            aria-hidden='true'
+            viewBox='0 0 160 96'
+            xmlns='http://www.w3.org/2000/svg'
+        >
+            <ellipse
+                cx='80'
+                cy='80'
+                fill='rgba(var(--center-channel-color-rgb), 0.08)'
+                rx='40'
+                ry='7'
+            />
+            <circle
+                cx='80'
+                cy='44'
+                fill='none'
+                r='26'
+                stroke='rgba(var(--center-channel-color-rgb), 0.28)'
+                strokeWidth='2'
+            />
+            <circle
+                cx='80'
+                cy='44'
+                fill='rgba(var(--button-bg-rgb), 0.16)'
+                r='14'
+                stroke='var(--button-bg)'
+                strokeWidth='2'
+            />
+            <rect
+                fill='rgba(var(--center-channel-color-rgb), 0.45)'
+                height='7'
+                rx='1'
+                width='2'
+                x='79'
+                y='14'
+            />
+            <rect
+                fill='rgba(var(--center-channel-color-rgb), 0.45)'
+                height='7'
+                rx='1'
+                width='2'
+                x='79'
+                y='67'
+            />
+            <rect
+                fill='rgba(var(--center-channel-color-rgb), 0.45)'
+                height='2'
+                rx='1'
+                width='7'
+                x='50'
+                y='43'
+            />
+            <rect
+                fill='rgba(var(--center-channel-color-rgb), 0.45)'
+                height='2'
+                rx='1'
+                width='7'
+                x='103'
+                y='43'
+            />
+            <polygon
+                fill='var(--button-bg)'
+                points='80,24 87,48 80,44 73,48'
+            />
+            <polygon
+                fill='rgba(var(--center-channel-color-rgb), 0.32)'
+                points='80,64 87,40 80,44 73,40'
+            />
+            <circle
+                cx='80'
+                cy='44'
+                fill='var(--button-bg)'
+                r='3.5'
+            />
+        </svg>
     );
 }
 
 export function IllustrationPreview() {
     return (
         <Illustration
-            aria-label='Empty mailbox'
-            height='64px'
-            width='64px'
+            aria-label='Sample illustration'
+            height='48px'
+            width='80px'
         >
-            <svg
-                viewBox='0 0 64 64'
-                xmlns='http://www.w3.org/2000/svg'
-            >
-                <rect
-                    fill='rgba(var(--center-channel-color-rgb), 0.08)'
-                    height='64'
-                    rx='8'
-                    width='64'
-                />
-            </svg>
+            <IllustrationMark/>
         </Illustration>
     );
 }
@@ -189,21 +259,11 @@ export function IllustrationPreview() {
 export function IllustrationDetail() {
     return (
         <Illustration
-            aria-label='Decorative placeholder'
+            aria-label='Sample illustration'
             height='96px'
             width='160px'
         >
-            <svg
-                viewBox='0 0 160 96'
-                xmlns='http://www.w3.org/2000/svg'
-            >
-                <rect
-                    fill='rgba(var(--button-bg-rgb, 28, 88, 217), 0.16)'
-                    height='96'
-                    rx='8'
-                    width='160'
-                />
-            </svg>
+            <IllustrationMark/>
         </Illustration>
     );
 }

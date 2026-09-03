@@ -6,12 +6,12 @@ import React, {useMemo, useState} from 'react';
 import {EmptyState} from '@mattermost/compass-ui/components/empty-state';
 import {Scrollbar} from '@mattermost/compass-ui/components/scrollbar';
 import {SearchInput} from '@mattermost/compass-ui/components/search-input';
-import {Tabs} from '@mattermost/compass-ui/components/tabs';
 
 import {CATALOG} from './catalog';
-import {countByCategory, filterCatalog} from './helpers';
+import {filterCatalog} from './helpers';
+import ScaledPreview from './scaled-preview';
 import {CATEGORIES, CATEGORY_LABELS} from './types';
-import type {CatalogEntry, CategoryFilter} from './types';
+import type {CatalogEntry} from './types';
 
 type Props = {
     onSelect: (id: string) => void;
@@ -19,82 +19,85 @@ type Props = {
 
 export default function Gallery({onSelect}: Props) {
     const [query, setQuery] = useState('');
-    const [category, setCategory] = useState<CategoryFilter>('all');
+    const isSearching = query.trim() !== '';
 
-    const counts = useMemo(() => countByCategory(CATALOG, query), [query]);
     const entries = useMemo(
-        () => filterCatalog(CATALOG, query, category),
-        [query, category],
+        () => filterCatalog(CATALOG, query),
+        [query],
     );
 
-    const tabs = useMemo(() => [
-        {key: 'all', label: 'All', countBadge: counts.all},
-        ...CATEGORIES.map((key) => ({
-            key,
-            label: CATEGORY_LABELS[key],
-            countBadge: counts[key],
-        })),
-    ], [counts]);
-
-    const sections = category === 'all' ? CATEGORIES : [category];
+    let body: React.ReactNode;
+    if (entries.length === 0) {
+        body = (
+            <EmptyState
+                title='No components match'
+                description='Try a different search.'
+                action={{
+                    children: 'Clear search',
+                    onClick: () => setQuery(''),
+                }}
+            />
+        );
+    } else if (isSearching) {
+        body = (
+            <div className='CompassShowcase__sections'>
+                <div className='CompassShowcase__grid'>
+                    {entries.map((entry) => (
+                        <CatalogCard
+                            key={entry.id}
+                            entry={entry}
+                            onSelect={onSelect}
+                        />
+                    ))}
+                </div>
+            </div>
+        );
+    } else {
+        body = (
+            <div className='CompassShowcase__sections'>
+                {CATEGORIES.map((section) => {
+                    const items = entries.filter((entry) => entry.category === section);
+                    if (items.length === 0) {
+                        return null;
+                    }
+                    return (
+                        <section
+                            key={section}
+                            className='CompassShowcase__section'
+                            aria-label={CATEGORY_LABELS[section]}
+                        >
+                            <h2 className='CompassShowcase__sectionTitle'>
+                                {CATEGORY_LABELS[section]}
+                            </h2>
+                            <div className='CompassShowcase__grid'>
+                                {items.map((entry) => (
+                                    <CatalogCard
+                                        key={entry.id}
+                                        entry={entry}
+                                        onSelect={onSelect}
+                                    />
+                                ))}
+                            </div>
+                        </section>
+                    );
+                })}
+            </div>
+        );
+    }
 
     return (
         <div className='CompassShowcase'>
             <div className='CompassShowcase__chrome'>
                 <SearchInput
-                    label='Search components'
+                    placeholder='Search'
+                    aria-label='Search'
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
                     onClear={() => setQuery('')}
                 />
-                <div className='CompassShowcase__tabs'>
-                    <Tabs
-                        tabs={tabs}
-                        activeKey={category}
-                        onChange={(key) => setCategory(key as CategoryFilter)}
-                    />
-                </div>
             </div>
             <Scrollbar className='CompassShowcase__scroll'>
-                {entries.length === 0 ? (
-                    <EmptyState
-                        title='No components match'
-                        description='Try a different search or category.'
-                        action={{
-                            children: 'Clear filters',
-                            onClick: () => {
-                                setQuery('');
-                                setCategory('all');
-                            },
-                        }}
-                    />
-                ) : (
-                    <div className='CompassShowcase__body'>
-                        {sections.map((section) => {
-                            const items = entries.filter((entry) => entry.category === section);
-                            if (items.length === 0) {
-                                return null;
-                            }
-                            return (
-                                <section
-                                    key={section}
-                                    className='CompassShowcase__section'
-                                >
-                                    <h2 className='CompassShowcase__sectionTitle'>
-                                        {CATEGORY_LABELS[section]}
-                                    </h2>
-                                    {items.map((entry) => (
-                                        <CatalogCard
-                                            key={entry.id}
-                                            entry={entry}
-                                            onSelect={onSelect}
-                                        />
-                                    ))}
-                                </section>
-                            );
-                        })}
-                    </div>
-                )}
+                {body}
             </Scrollbar>
         </div>
     );
@@ -108,18 +111,34 @@ type CardProps = {
 function CatalogCard({entry, onSelect}: CardProps) {
     const Preview = entry.preview;
 
+    const select = () => onSelect(entry.id);
+
+    let previewClassName: string | undefined;
+    if (entry.previewSurface === 'sidebar') {
+        previewClassName = 'CompassShowcase__cardPreview--sidebar';
+    }
+
     return (
-        <button
-            type='button'
+        <div
             className='CompassShowcase__card'
-            onClick={() => onSelect(entry.id)}
+            role='button'
+            tabIndex={0}
+            onClick={select}
+            onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    select();
+                }
+            }}
         >
-            <div className='CompassShowcase__cardPreview'>
+            <ScaledPreview className={previewClassName}>
                 <Preview/>
-            </div>
-            <p className='CompassShowcase__cardName'>
-                {entry.name}
-            </p>
-        </button>
+            </ScaledPreview>
+            <span className='CompassShowcase__cardMeta'>
+                <span className='CompassShowcase__cardName'>
+                    {entry.name}
+                </span>
+            </span>
+        </div>
     );
 }

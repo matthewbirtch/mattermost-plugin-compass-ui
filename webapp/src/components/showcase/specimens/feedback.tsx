@@ -9,7 +9,7 @@ import {SectionNotice} from '@mattermost/compass-ui/components/section-notice';
 import {Toast} from '@mattermost/compass-ui/components/toast';
 import {Tooltip} from '@mattermost/compass-ui/components/tooltip';
 
-import {Note, Variant} from './shared';
+import {Note, Variant, WidePreview} from './shared';
 
 export function ErrorMessagePreview() {
     return (
@@ -25,11 +25,13 @@ export function ErrorMessageDetail() {
 
 export function SectionNoticePreview() {
     return (
-        <SectionNotice
-            title='Invite teammates'
-            description='Share this workspace with people who should see Compass UI.'
-            type='info'
-        />
+        <WidePreview>
+            <SectionNotice
+                title='Invite teammates'
+                description='Share this workspace with people who should see Compass UI.'
+                type='info'
+            />
+        </WidePreview>
     );
 }
 
@@ -99,13 +101,47 @@ export function TooltipDetail() {
             <Note>
                 {'Tooltip is chrome-only — the host owns hover, delay, and positioning.'}
             </Note>
-            <Variant label='With hint and shortcut'>
+            <Variant label='Label only'>
+                <Tooltip label='Add a reaction'/>
+            </Variant>
+            <Variant label='Label and hint'>
                 <Tooltip
-                    arrow='bottom'
+                    hint='Search this channel'
+                    label='Find'
+                />
+            </Variant>
+            <Variant label='Label and shortcut'>
+                <Tooltip
+                    label='Find'
+                    shortcutKeys={[{label: '⌘'}, {label: 'F'}]}
+                />
+            </Variant>
+            <Variant label='Label, hint, and shortcut'>
+                <Tooltip
                     hint='Search this channel'
                     label='Find'
                     shortcutKeys={[{label: '⌘'}, {label: 'F'}]}
                 />
+            </Variant>
+            <Variant label='Arrow positions'>
+                <div className='CompassShowcase__stack'>
+                    <Tooltip
+                        arrow='top'
+                        label='Top'
+                    />
+                    <Tooltip
+                        arrow='right'
+                        label='Right'
+                    />
+                    <Tooltip
+                        arrow='bottom'
+                        label='Bottom'
+                    />
+                    <Tooltip
+                        arrow='left'
+                        label='Left'
+                    />
+                </div>
             </Variant>
         </>
     );
@@ -113,9 +149,14 @@ export function TooltipDetail() {
 
 export function PopoverNoticePreview() {
     return (
-        <PopoverNotice title='Try keyboard shortcuts'>
-            {'Press ⌘K to jump to a channel.'}
-        </PopoverNotice>
+        <WidePreview>
+            <PopoverNotice
+                title='Try keyboard shortcuts'
+                variant='info'
+            >
+                {'Press ⌘K to jump to a channel.'}
+            </PopoverNotice>
+        </WidePreview>
     );
 }
 

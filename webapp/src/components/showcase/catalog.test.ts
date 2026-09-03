@@ -3,7 +3,7 @@
 
 import {CATALOG} from './catalog';
 import {countByCategory, filterCatalog} from './helpers';
-import {CATEGORIES} from './types';
+import {CATEGORIES, categoryPath} from './types';
 import type {CatalogEntry} from './types';
 
 const fixture: CatalogEntry[] = [
@@ -34,23 +34,15 @@ const fixture: CatalogEntry[] = [
 ];
 
 describe('filterCatalog', () => {
-    it('returns every entry when query and category are unrestricted', () => {
-        expect(filterCatalog(fixture, '', 'all')).toHaveLength(3);
-    });
-
-    it('filters by category', () => {
-        expect(filterCatalog(fixture, '', 'forms').map((entry) => entry.id)).toEqual(['text-input']);
+    it('returns every entry when the query is empty', () => {
+        expect(filterCatalog(fixture, '')).toHaveLength(3);
+        expect(filterCatalog(fixture, '   ')).toHaveLength(3);
     });
 
     it('filters by name, description, and category text', () => {
-        expect(filterCatalog(fixture, 'primary', 'all').map((entry) => entry.id)).toEqual(['button']);
-        expect(filterCatalog(fixture, 'field', 'all').map((entry) => entry.id)).toEqual(['text-input']);
-        expect(filterCatalog(fixture, 'actions', 'all').map((entry) => entry.id)).toEqual(['button']);
-    });
-
-    it('intersects search with the selected category', () => {
-        expect(filterCatalog(fixture, 'button', 'forms')).toHaveLength(0);
-        expect(filterCatalog(fixture, 'button', 'actions')).toHaveLength(1);
+        expect(filterCatalog(fixture, 'primary').map((entry) => entry.id)).toEqual(['button']);
+        expect(filterCatalog(fixture, 'field').map((entry) => entry.id)).toEqual(['text-input']);
+        expect(filterCatalog(fixture, 'actions').map((entry) => entry.id)).toEqual(['button']);
     });
 });
 
@@ -80,5 +72,18 @@ describe('CATALOG', () => {
     it('uses unique ids', () => {
         const ids = CATALOG.map((entry) => entry.id);
         expect(new Set(ids).size).toEqual(ids.length);
+    });
+
+    it('opts only Team Avatar into the sidebar preview surface', () => {
+        const entry = CATALOG.find((item) => item.id === 'team-avatar');
+        expect(entry?.previewSurface).toEqual('sidebar');
+        expect(CATALOG.filter((item) => item.previewSurface).map((item) => item.id)).toEqual(['team-avatar']);
+    });
+});
+
+describe('categoryPath', () => {
+    it('builds a truncated-style Components breadcrumb', () => {
+        expect(categoryPath('actions')).toEqual('Components - Actions');
+        expect(categoryPath('forms')).toEqual('Components - Forms and Input');
     });
 });

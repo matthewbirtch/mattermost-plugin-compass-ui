@@ -8,11 +8,26 @@ import {EmptyState} from '@mattermost/compass-ui/components/empty-state';
 import {Scrollbar} from '@mattermost/compass-ui/components/scrollbar';
 import {Tabs} from '@mattermost/compass-ui/components/tabs';
 
-import {Note, Variant} from './shared';
+import {IllustrationMark} from './images';
+import {Note, Variant, WidePreview} from './shared';
+
+const emptyStateIllustration = {
+    'aria-label': 'Sample illustration',
+    children: <IllustrationMark/>,
+    height: '96px',
+    width: '160px',
+};
 
 export function DividerPreview() {
     return (
-        <Divider/>
+        <div
+            className='CompassShowcase__stack'
+            style={{width: 88}}
+        >
+            <span>{'Above'}</span>
+            <Divider/>
+            <span>{'Below'}</span>
+        </div>
     );
 }
 
@@ -28,10 +43,13 @@ export function DividerDetail() {
 
 export function EmptyStatePreview() {
     return (
-        <EmptyState
-            description='Saved messages will show up here.'
-            title='No saved messages'
-        />
+        <WidePreview>
+            <EmptyState
+                description='Saved messages will show up here.'
+                illustration={emptyStateIllustration}
+                title='No saved messages'
+            />
+        </WidePreview>
     );
 }
 
@@ -40,6 +58,7 @@ export function EmptyStateDetail() {
         <EmptyState
             action={{children: 'Clear search'}}
             description='Try a different name or category.'
+            illustration={emptyStateIllustration}
             title='No components match'
         />
     );
@@ -47,13 +66,21 @@ export function EmptyStateDetail() {
 
 export function ScrollbarPreview() {
     return (
-        <Scrollbar style={{height: 72}}>
-            <div style={{padding: 8}}>
-                {'Compass Scrollbar wraps overflowing content with a thin thumb.'}
-                <br/>
-                {'Keep scrolling to see the track.'}
-                <br/>
-                {'The RHS gallery uses this same control.'}
+        <Scrollbar
+            alwaysVisible={true}
+            className='CompassShowcase__scrollbarPreview'
+            style={{height: 80, width: 64}}
+        >
+            <div
+                className='CompassShowcase__scrollbarDemo'
+                style={{height: 160}}
+            >
+                <div className='CompassShowcase__scrollbarDemoLine'/>
+                <div className='CompassShowcase__scrollbarDemoLine'/>
+                <div className='CompassShowcase__scrollbarDemoLine'/>
+                <div className='CompassShowcase__scrollbarDemoLine'/>
+                <div className='CompassShowcase__scrollbarDemoLine'/>
+                <div className='CompassShowcase__scrollbarDemoLine'/>
             </div>
         </Scrollbar>
     );
@@ -65,7 +92,10 @@ export function ScrollbarDetail() {
             alwaysVisible={true}
             style={{height: 96}}
         >
-            <div style={{padding: 8, height: 180}}>
+            <div
+                className='CompassShowcase__scrollbarDemo'
+                style={{height: 180}}
+            >
                 {'alwaysVisible keeps the thumb on screen while content overflows.'}
             </div>
         </Scrollbar>

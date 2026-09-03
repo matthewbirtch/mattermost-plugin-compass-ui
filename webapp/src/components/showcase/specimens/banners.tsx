@@ -10,12 +10,16 @@ import {MoreUnreadsBanner} from '@mattermost/compass-ui/components/more-unreads-
 import {NewMessageBanner} from '@mattermost/compass-ui/components/new-message-banner';
 import {SearchTipBanner} from '@mattermost/compass-ui/components/search-tip-banner';
 
+import {WidePreview} from './shared';
+
 export function GlobalBannerPreview() {
     return (
-        <GlobalBanner
-            message='Scheduled maintenance starts at 22:00 UTC.'
-            type='info'
-        />
+        <WidePreview padded={true}>
+            <GlobalBanner
+                message='Scheduled maintenance starts at 22:00 UTC.'
+                type='info'
+            />
+        </WidePreview>
     );
 }
 
@@ -50,7 +54,7 @@ export function MoreUnreadsBannerPreview() {
 
 export function MoreUnreadsBannerDetail() {
     return (
-        <div className='CompassShowcase__stack'>
+        <div className='CompassShowcase__stack CompassShowcase__stack--hug'>
             <MoreUnreadsBanner direction='up'/>
             <MoreUnreadsBanner direction='down'/>
         </div>
@@ -59,7 +63,9 @@ export function MoreUnreadsBannerDetail() {
 
 export function NewMessageBannerPreview() {
     return (
-        <NewMessageBanner countLabel='8 new messages since yesterday'/>
+        <div className='CompassShowcase__newMessageBannerPreview'>
+            <NewMessageBanner countLabel='8 new messages since yesterday'/>
+        </div>
     );
 }
 
@@ -77,7 +83,9 @@ export function NewMessageBannerDetail() {
 
 export function SearchTipBannerPreview() {
     return (
-        <SearchTipBanner/>
+        <WidePreview center={true}>
+            <SearchTipBanner/>
+        </WidePreview>
     );
 }
 

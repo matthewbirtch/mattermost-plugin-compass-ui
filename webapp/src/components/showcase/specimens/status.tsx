@@ -4,13 +4,12 @@
 import React from 'react';
 
 import {MentionBadge} from '@mattermost/compass-ui/components/mention-badge';
-import {ReactionPill} from '@mattermost/compass-ui/components/reaction-pill';
 import {ShortcutTag, ShortcutTagGroup} from '@mattermost/compass-ui/components/shortcut-tag';
 import {StatusBadge} from '@mattermost/compass-ui/components/status-badge';
 import {Tag} from '@mattermost/compass-ui/components/tag';
 import {UnreadBadge} from '@mattermost/compass-ui/components/unread-badge';
 
-import {Row, Variant} from './shared';
+import {Row} from './shared';
 
 export function TagPreview() {
     return (
@@ -119,31 +118,5 @@ export function UnreadBadgeDetail() {
                 size='6'
             />
         </Row>
-    );
-}
-
-export function ReactionPillPreview() {
-    return (
-        <ReactionPill
-            emoji='🎉'
-            label='Aiko'
-        />
-    );
-}
-
-export function ReactionPillDetail() {
-    return (
-        <Variant label='Reaction / hand raise'>
-            <div className='CompassShowcase__stack'>
-                <ReactionPill
-                    emoji='👍'
-                    label='Leonard'
-                />
-                <ReactionPill
-                    type='hand-raise'
-                    label='Sofia'
-                />
-            </div>
-        </Variant>
     );
 }

@@ -7,6 +7,57 @@
     color: var(--center-channel-color);
 }
 
+.CompassShowcase__nav {
+    position: relative;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+}
+
+.CompassShowcase__pane {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+}
+
+.CompassShowcase__pane--root {
+    transition: transform var(--duration-moderate) var(--ease-exit);
+}
+
+.CompassShowcase__nav--pushed .CompassShowcase__pane--root {
+    pointer-events: none;
+    transform: translateX(-25%);
+    transition-timing-function: var(--ease-entrance);
+}
+
+.CompassShowcase__pane--push {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+    background: var(--center-channel-bg);
+    box-shadow: -4px 0 16px rgba(var(--center-channel-color-rgb), 0.08);
+    transform: translateX(100%);
+    transition: transform var(--duration-moderate) var(--ease-exit);
+}
+
+.CompassShowcase__nav--pushed .CompassShowcase__pane--push {
+    transform: translateX(0);
+    transition-timing-function: var(--ease-entrance);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .CompassShowcase__pane--root,
+    .CompassShowcase__pane--push {
+        transition-duration: 0ms;
+    }
+
+    .CompassShowcase__nav--pushed .CompassShowcase__pane--root,
+    .CompassShowcase__nav--pushed .CompassShowcase__pane--push {
+        transform: none;
+    }
+}
+
 .CompassShowcase__chrome {
     flex: 0 0 auto;
     position: sticky;
@@ -14,16 +65,15 @@
     z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    padding: 16px 16px 0;
+    gap: var(--spacing-m, 12px);
+    padding: var(--spacing-l, 16px) var(--spacing-l, 16px) var(--spacing-xs, 8px);
     background: var(--center-channel-bg);
-    border-bottom: 1px solid rgba(var(--center-channel-color-rgb), 0.08);
 }
 
-.CompassShowcase__tabs {
-    overflow-x: auto;
-    margin: 0 -16px;
-    padding: 0 16px 4px;
+// Detail has no SearchInput. Equal 16px chrome padding on all sides so the
+// title block is not tighter on the bottom than the top.
+.CompassShowcase__chrome--detail {
+    padding: var(--spacing-l, 16px);
 }
 
 .CompassShowcase__scroll {
@@ -31,82 +81,160 @@
     min-height: 0;
 }
 
-.CompassShowcase__body {
+.CompassShowcase__sections {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 16px;
+    gap: var(--spacing-xxxl, 32px);
+    padding: var(--spacing-l, 16px);
 }
 
 .CompassShowcase__section {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: var(--spacing-m, 12px);
+    min-width: 0;
 }
 
 .CompassShowcase__sectionTitle {
     margin: 0;
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 600;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-    color: rgba(var(--center-channel-color-rgb), 0.72);
+    line-height: 20px;
+    color: var(--center-channel-color);
+}
+
+.CompassShowcase__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 110px), 1fr));
+    gap: var(--spacing-l, 16px) var(--spacing-m, 12px);
 }
 
 .CompassShowcase__card {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: var(--spacing-xs, 8px);
     width: 100%;
-    padding: 12px;
-    border: 1px solid rgba(var(--center-channel-color-rgb), 0.16);
-    border-radius: 8px;
-    background: var(--center-channel-bg);
+    min-width: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
     color: inherit;
     text-align: left;
     cursor: pointer;
 }
 
-.CompassShowcase__card:hover,
-.CompassShowcase__card:focus-visible {
-    border-color: rgba(var(--center-channel-color-rgb), 0.32);
-    background: rgba(var(--center-channel-color-rgb), 0.04);
+.CompassShowcase__cardPreview {
+    aspect-ratio: 1 / 1;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    border: none;
+    border-radius: var(--radius-m, 8px);
+    background: rgba(var(--center-channel-color-rgb), 0.08);
+    text-align: left;
+    transition: background-color var(--duration-quick, 150ms) var(--ease-transition, ease-in-out);
 }
 
-.CompassShowcase__cardPreview {
-    pointer-events: none;
-    min-height: 36px;
+.CompassShowcase__card:hover .CompassShowcase__cardPreview,
+.CompassShowcase__card:focus-visible .CompassShowcase__cardPreview {
+    background: rgba(var(--center-channel-color-rgb), 0.12);
+}
+
+// Team avatars sit on sidebar chrome. Opt-in via CatalogEntry.previewSurface.
+.CompassShowcase__cardPreview--sidebar,
+.CompassShowcase__card:hover .CompassShowcase__cardPreview--sidebar,
+.CompassShowcase__card:focus-visible .CompassShowcase__cardPreview--sidebar {
+    background: var(--sidebar-header-bg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .CompassShowcase__cardPreview {
+        transition: none;
+    }
+}
+
+.CompassShowcase__cardScaler {
     overflow: hidden;
 }
 
+.CompassShowcase__cardStage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: max-content;
+    max-width: 280px;
+    padding: var(--spacing-m, 12px);
+    transform-origin: top left;
+    text-align: left;
+}
+
+.CompassShowcase__cardMeta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xxxxs, 2px);
+    width: 100%;
+    min-width: 0;
+    text-align: left;
+}
+
 .CompassShowcase__cardName {
+    display: block;
+    align-self: flex-start;
+    box-sizing: border-box;
+    max-width: 100%;
     margin: 0;
-    font-size: 14px;
-    font-weight: 600;
+    overflow: hidden;
+    text-align: left !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    color: var(--center-channel-color);
+}
+
+.CompassShowcase__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-l, 16px);
+    padding: var(--spacing-l, 16px);
+}
+
+.CompassShowcase__body--detail {
+    gap: var(--spacing-xxl, 24px);
+    padding-top: var(--spacing-xs, 8px);
 }
 
 .CompassShowcase__detailHeader {
     display: flex;
     align-items: flex-start;
-    gap: 8px;
+    gap: var(--spacing-xs, 8px);
 }
 
 .CompassShowcase__detailCopy {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--spacing-xxxs, 4px);
     min-width: 0;
 }
 
 .CompassShowcase__detailTitle {
     margin: 0;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
+    line-height: 20px;
 }
 
 .CompassShowcase__detailDescription {
     margin: 0;
-    font-size: 14px;
+    font-size: 12px;
+    line-height: 16px;
     color: rgba(var(--center-channel-color-rgb), 0.72);
 }
 
@@ -114,13 +242,13 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 8px;
+    gap: var(--spacing-xs, 8px);
 }
 
 .CompassShowcase__variant {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--spacing-xs, 8px);
 }
 
 .CompassShowcase__variantLabel {
@@ -132,7 +260,7 @@
 .CompassShowcase__variantLive {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--spacing-xs, 8px);
     min-width: 0;
 }
 
@@ -149,9 +277,139 @@
     border-radius: 8px;
 }
 
+// Opt-in gallery-only stage: wider than the 280px card so ScaledPreview shrinks
+// chrome/messaging specimens into a miniature. Compact previews stay unwrapped.
+.CompassShowcase__widePreview {
+    box-sizing: content-box;
+    flex: 0 0 auto;
+    width: 480px;
+    max-width: 480px;
+    padding: var(--spacing-xxxxxl, 48px);
+}
+
+// Global Banner is width:100%, so even a 480px stage still reads as a
+// full-bleed strip. Extra padding shrinks it into a thumbnail with gutters.
+.CompassShowcase__widePreview--padded {
+    padding: 96px;
+}
+
+// New Message Banner is width:100% with no intrinsic size: the count is
+// position:absolute and in-flow "Jump to unreads" hides under 749px via
+// container query. That collapses inside ScaledPreview's max-content stage
+// (same as Progress Bar) and overflow:hidden clips the centered label.
+// A compact artboard fills the bar; flex stretch + padding keep elevation-2
+// and the count inside overflow:hidden tiles without shrinking to a sliver.
+.CompassShowcase__newMessageBannerPreview {
+    box-sizing: content-box;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 280px;
+    max-width: 280px;
+    height: 32px;
+    padding: var(--spacing-l, 16px) var(--spacing-xl, 20px);
+}
+
+// Search Tip Banner is width:fit-content. Without centering it sits at the
+// start of the 480px artboard, so ScaledPreview + overflow:hidden clips the
+// pill on the left and leaves empty space on the right.
+.CompassShowcase__widePreview--center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// Tour Point's pointer sits 9px outside the card. The pulsing-dot ring is a
+// 12px origin inside a 40px box and animates to scale(4.25) (~51px), so the
+// ring extends ~35px past the card on the pointer side. Padding keeps that
+// paint inside overflow:hidden tiles and SimpleBar — do not set cardPreview
+// overflow:visible (that would break rounded clipping of other previews).
+.CompassShowcase__tourPointPreview {
+    box-sizing: content-box;
+    padding: var(--spacing-xxxxl, 40px);
+}
+
+.CompassShowcase__tourPointDetail {
+    padding: var(--spacing-xxxxl, 40px) var(--spacing-l, 16px) 0;
+    overflow: visible;
+}
+
 .CompassShowcase__stack {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--spacing-l, 16px);
     min-width: 0;
+}
+
+// Pill-like children (More Unreads Banner) are inline-flex with no
+// width:fit-content. Default align-items:stretch would make them full-bleed.
+// Keep the default stack stretching for SectionNotice / Global Banner / etc.
+.CompassShowcase__stack--hug {
+    align-items: flex-start;
+}
+
+.CompassShowcase__scrollbarDemo {
+    box-sizing: border-box;
+    padding: var(--spacing-xs, 8px);
+    border-radius: var(--radius-s, 4px);
+    background: rgba(var(--center-channel-color-rgb), 0.06);
+}
+
+// Compact overflowing well for the gallery tile. Keep this small so
+// ScaledPreview does not shrink a paragraph of copy over the thumb.
+.CompassShowcase__scrollbarPreview {
+    flex: 0 0 auto;
+    width: 64px;
+    height: 80px;
+
+    // The card tile is pointer-events:none, so hover never unhides the thumb.
+    // Nested SimpleBar under transform:scale() can also leave ::before at 0.
+    .simplebar-scrollbar:before {
+        opacity: 1;
+    }
+}
+
+.CompassShowcase__scrollbarDemoLine {
+    display: block;
+    height: 8px;
+    margin-bottom: var(--spacing-xs, 8px);
+    border-radius: 2px;
+    background: rgba(var(--center-channel-color-rgb), 0.16);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.CompassShowcase__sidebarWell {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-xs, 8px);
+    width: fit-content;
+    max-width: 100%;
+    padding: var(--spacing-m, 12px);
+    border-radius: var(--radius-m, 8px);
+    background: var(--sidebar-header-bg);
+}
+
+// Mattermost `label { font-weight: 600 }` inherits into Compass Checkbox,
+// Radio, and Switch, which render as <label> without setting font-weight.
+.CompassShowcase__stack > label,
+.CompassShowcase__cardStage label {
+    font-weight: inherit;
+}
+
+// Mattermost `p { margin: 1em 0 }` and heading margins leak into Compass
+// LinkPreview / PermalinkPreview, which render copy as <p> without setting
+// margin. Compass already uses a 4px flex gap on LinkPreview __text.
+.CompassShowcase__linkPreview {
+    p,
+    h1,
+    h2,
+    h3,
+    h4 {
+        margin: 0;
+    }
 }
