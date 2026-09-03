@@ -10,7 +10,7 @@ import {SearchInput} from '@mattermost/compass-ui/components/search-input';
 import {CATALOG} from './catalog';
 import {filterCatalog} from './helpers';
 import ScaledPreview from './scaled-preview';
-import {CATEGORIES, CATEGORY_LABELS, categoryPath} from './types';
+import {CATEGORIES, CATEGORY_LABELS} from './types';
 import type {CatalogEntry} from './types';
 
 type Props = {
@@ -131,9 +131,6 @@ function CatalogCard({entry, onSelect}: CardProps) {
             <span className='CompassShowcase__cardMeta'>
                 <span className='CompassShowcase__cardName'>
                     {entry.name}
-                </span>
-                <span className='CompassShowcase__cardPath'>
-                    {categoryPath(entry.category)}
                 </span>
             </span>
         </div>

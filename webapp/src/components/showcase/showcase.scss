@@ -163,8 +163,7 @@
     text-align: left;
 }
 
-.CompassShowcase__cardName,
-.CompassShowcase__cardPath {
+.CompassShowcase__cardName {
     display: block;
     align-self: flex-start;
     box-sizing: border-box;
@@ -174,20 +173,10 @@
     text-align: left !important;
     text-overflow: ellipsis;
     white-space: nowrap;
-}
-
-.CompassShowcase__cardName {
     font-size: 12px;
     font-weight: 400;
     line-height: 16px;
     color: var(--center-channel-color);
-}
-
-.CompassShowcase__cardPath {
-    font-size: 11px;
-    font-weight: 400;
-    line-height: 14px;
-    color: rgba(var(--center-channel-color-rgb), 0.56);
 }
 
 .CompassShowcase__body {
