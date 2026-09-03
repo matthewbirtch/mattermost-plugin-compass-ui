@@ -1,7 +1,7 @@
 // Copyright (c) 2015-present Mattermost, Inc. All Rights Reserved.
 // See LICENSE.txt for license information.
 
-import React from 'react';
+import React, {useState} from 'react';
 
 import {PaginationDots} from '@mattermost/compass-ui/components/pagination-dots';
 import {ProgressBar} from '@mattermost/compass-ui/components/progress-bar';
@@ -58,10 +58,13 @@ export function PaginationDotsPreview() {
 }
 
 export function PaginationDotsDetail() {
+    const [activePage, setActivePage] = useState(1);
+
     return (
         <PaginationDots
-            activePage={1}
+            activePage={activePage}
             pages={5}
+            onPageChange={setActivePage}
         />
     );
 }
