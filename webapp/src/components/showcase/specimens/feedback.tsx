@@ -149,9 +149,14 @@ export function TooltipDetail() {
 
 export function PopoverNoticePreview() {
     return (
-        <PopoverNotice title='Try keyboard shortcuts'>
-            {'Press ⌘K to jump to a channel.'}
-        </PopoverNotice>
+        <WidePreview>
+            <PopoverNotice
+                title='Try keyboard shortcuts'
+                variant='info'
+            >
+                {'Press ⌘K to jump to a channel.'}
+            </PopoverNotice>
+        </WidePreview>
     );
 }
 
