@@ -63,9 +63,9 @@ export function MoreUnreadsBannerDetail() {
 
 export function NewMessageBannerPreview() {
     return (
-        <WidePreview padded={true}>
+        <div className='CompassShowcase__newMessageBannerPreview'>
             <NewMessageBanner countLabel='8 new messages since yesterday'/>
-        </WidePreview>
+        </div>
     );
 }
 
@@ -83,7 +83,7 @@ export function NewMessageBannerDetail() {
 
 export function SearchTipBannerPreview() {
     return (
-        <WidePreview>
+        <WidePreview center={true}>
             <SearchTipBanner/>
         </WidePreview>
     );

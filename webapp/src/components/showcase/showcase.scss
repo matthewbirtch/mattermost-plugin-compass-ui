@@ -291,6 +291,33 @@
     padding: 96px;
 }
 
+// New Message Banner is width:100% with no intrinsic size: the count is
+// position:absolute and in-flow "Jump to unreads" hides under 749px via
+// container query. That collapses inside ScaledPreview's max-content stage
+// (same as Progress Bar) and overflow:hidden clips the centered label.
+// A compact artboard fills the bar; flex stretch + padding keep elevation-2
+// and the count inside overflow:hidden tiles without shrinking to a sliver.
+.CompassShowcase__newMessageBannerPreview {
+    box-sizing: content-box;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 220px;
+    max-width: 220px;
+    height: 32px;
+    padding: 20px;
+}
+
+// Search Tip Banner is width:fit-content. Without centering it sits at the
+// start of the 480px artboard, so ScaledPreview + overflow:hidden clips the
+// pill on the left and leaves empty space on the right.
+.CompassShowcase__widePreview--center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 // Message Input is width:100%, so even a 480px stage still reads as a squeezed
 // full-width composer. Extra padding shrinks it into a thumbnail with gutters.
 .CompassShowcase__messageInputPreview {

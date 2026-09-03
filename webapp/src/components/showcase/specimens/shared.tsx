@@ -49,14 +49,19 @@ export function Excerpt({children}: {children: React.ReactNode}) {
 
 export function WidePreview({
     children,
+    center,
     padded,
 }: {
     children: React.ReactNode;
+    center?: boolean;
     padded?: boolean;
 }) {
     let className = 'CompassShowcase__widePreview';
     if (padded) {
         className += ' CompassShowcase__widePreview--padded';
+    }
+    if (center) {
+        className += ' CompassShowcase__widePreview--center';
     }
 
     return (

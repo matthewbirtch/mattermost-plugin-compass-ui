@@ -12,6 +12,7 @@ import {
     MoreUnreadsBannerDetail,
     MoreUnreadsBannerPreview,
     NewMessageBannerPreview,
+    SearchTipBannerPreview,
 } from './banners';
 
 jest.mock('@mattermost/compass-ui/components/more-unreads-banner', () => ({
@@ -42,7 +43,11 @@ jest.mock('@mattermost/compass-ui/components/new-message-banner', () => ({
 }));
 
 jest.mock('@mattermost/compass-ui/components/search-tip-banner', () => ({
-    SearchTipBanner: () => null,
+    SearchTipBanner: () => (
+        <div data-testid='search-tip-banner'>
+            {'Tip: Try ⌘ Shift F to search this channel'}
+        </div>
+    ),
 }));
 
 type Rendered = {
@@ -129,14 +134,35 @@ describe('NewMessageBannerPreview', () => {
         rendered?.unmount();
     });
 
-    it('uses the same padded wide artboard as Global Banner', () => {
+    it('uses a compact padded artboard so the bar has a definite size', () => {
         const view = render(<NewMessageBannerPreview/>);
         rendered = view;
 
         const artboard = view.container.firstElementChild as HTMLElement;
-        expect(artboard.className).toEqual('CompassShowcase__widePreview CompassShowcase__widePreview--padded');
+        expect(artboard.className).toEqual('CompassShowcase__newMessageBannerPreview');
         expect(artboard.querySelector('[data-testid="new-message-banner"]')?.textContent).toEqual(
             '8 new messages since yesterday',
+        );
+    });
+});
+
+describe('SearchTipBannerPreview', () => {
+    let rendered: Rendered | undefined;
+
+    afterEach(() => {
+        rendered?.unmount();
+    });
+
+    it('centers the fit-content pill on the wide artboard', () => {
+        const view = render(<SearchTipBannerPreview/>);
+        rendered = view;
+
+        const artboard = view.container.firstElementChild as HTMLElement;
+        expect(artboard.className).toEqual(
+            'CompassShowcase__widePreview CompassShowcase__widePreview--center',
+        );
+        expect(artboard.querySelector('[data-testid="search-tip-banner"]')?.textContent).toEqual(
+            'Tip: Try ⌘ Shift F to search this channel',
         );
     });
 });
