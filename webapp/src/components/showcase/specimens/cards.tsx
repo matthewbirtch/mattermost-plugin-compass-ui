@@ -8,7 +8,7 @@ import {ImagePreview} from '@mattermost/compass-ui/components/image-preview';
 import {LinkPreview} from '@mattermost/compass-ui/components/link-preview';
 import {PermalinkPreview} from '@mattermost/compass-ui/components/permalink-preview';
 
-import {Note} from './shared';
+import {Note, WidePreview} from './shared';
 
 const PLACEHOLDER_IMG = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180" viewBox="0 0 320 180">' +
@@ -104,12 +104,14 @@ export function LinkPreviewDetail() {
 
 export function PermalinkPreviewPreview() {
     return (
-        <PermalinkPreview
-            authorName='Aiko Tan'
-            avatarSrc=''
-            messageText='The gallery should use Compass SearchInput and Tabs.'
-            originalChannel='~UX Design'
-        />
+        <WidePreview>
+            <PermalinkPreview
+                authorName='Aiko Tan'
+                avatarSrc=''
+                messageText='The gallery should use Compass SearchInput and Tabs.'
+                originalChannel='~UX Design'
+            />
+        </WidePreview>
     );
 }
 
