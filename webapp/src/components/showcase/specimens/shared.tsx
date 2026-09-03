@@ -47,9 +47,20 @@ export function Excerpt({children}: {children: React.ReactNode}) {
     );
 }
 
-export function WidePreview({children}: {children: React.ReactNode}) {
+export function WidePreview({
+    children,
+    padded,
+}: {
+    children: React.ReactNode;
+    padded?: boolean;
+}) {
+    let className = 'CompassShowcase__widePreview';
+    if (padded) {
+        className += ' CompassShowcase__widePreview--padded';
+    }
+
     return (
-        <div className='CompassShowcase__widePreview'>
+        <div className={className}>
             {children}
         </div>
     );

@@ -6,7 +6,13 @@ import {createRoot} from 'react-dom/client';
 import type {Root} from 'react-dom/client';
 import {act} from 'react-dom/test-utils';
 
-import {MoreUnreadsBannerDetail, MoreUnreadsBannerPreview} from './banners';
+import {
+    GlobalBannerDetail,
+    GlobalBannerPreview,
+    MoreUnreadsBannerDetail,
+    MoreUnreadsBannerPreview,
+    NewMessageBannerPreview,
+} from './banners';
 
 jest.mock('@mattermost/compass-ui/components/more-unreads-banner', () => ({
     MoreUnreadsBanner: ({direction}: {direction?: string}) => (
@@ -20,11 +26,19 @@ jest.mock('@mattermost/compass-ui/components/more-unreads-banner', () => ({
 }));
 
 jest.mock('@mattermost/compass-ui/components/global-banner', () => ({
-    GlobalBanner: () => null,
+    GlobalBanner: ({message}: {message?: string}) => (
+        <div data-testid='global-banner'>
+            {message}
+        </div>
+    ),
 }));
 
 jest.mock('@mattermost/compass-ui/components/new-message-banner', () => ({
-    NewMessageBanner: () => null,
+    NewMessageBanner: ({countLabel}: {countLabel?: string}) => (
+        <div data-testid='new-message-banner'>
+            {countLabel}
+        </div>
+    ),
 }));
 
 jest.mock('@mattermost/compass-ui/components/search-tip-banner', () => ({
@@ -77,5 +91,52 @@ describe('MoreUnreadsBanner specimens', () => {
         expect(stack.className).toEqual('CompassShowcase__stack CompassShowcase__stack--hug');
         expect(view.container.querySelector('[data-testid="more-unreads-up"]')).not.toBeNull();
         expect(view.container.querySelector('[data-testid="more-unreads-down"]')).not.toBeNull();
+    });
+});
+
+describe('GlobalBanner specimens', () => {
+    let rendered: Rendered | undefined;
+
+    afterEach(() => {
+        rendered?.unmount();
+    });
+
+    it('uses a padded wide artboard so the full-bleed banner sits inset', () => {
+        const view = render(<GlobalBannerPreview/>);
+        rendered = view;
+
+        const artboard = view.container.firstElementChild as HTMLElement;
+        expect(artboard.className).toEqual('CompassShowcase__widePreview CompassShowcase__widePreview--padded');
+        expect(artboard.querySelector('[data-testid="global-banner"]')?.textContent).toEqual(
+            'Scheduled maintenance starts at 22:00 UTC.',
+        );
+    });
+
+    it('keeps the detail specimen full width without the gallery artboard', () => {
+        const view = render(<GlobalBannerDetail/>);
+        rendered = view;
+
+        const stack = view.container.firstElementChild as HTMLElement;
+        expect(stack.className).toEqual('CompassShowcase__stack');
+        expect(stack.querySelectorAll('[data-testid="global-banner"]')).toHaveLength(2);
+    });
+});
+
+describe('NewMessageBannerPreview', () => {
+    let rendered: Rendered | undefined;
+
+    afterEach(() => {
+        rendered?.unmount();
+    });
+
+    it('uses the same padded wide artboard as Global Banner', () => {
+        const view = render(<NewMessageBannerPreview/>);
+        rendered = view;
+
+        const artboard = view.container.firstElementChild as HTMLElement;
+        expect(artboard.className).toEqual('CompassShowcase__widePreview CompassShowcase__widePreview--padded');
+        expect(artboard.querySelector('[data-testid="new-message-banner"]')?.textContent).toEqual(
+            '8 new messages since yesterday',
+        );
     });
 });

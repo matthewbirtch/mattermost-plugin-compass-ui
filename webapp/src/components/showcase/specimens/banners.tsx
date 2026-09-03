@@ -14,10 +14,12 @@ import {WidePreview} from './shared';
 
 export function GlobalBannerPreview() {
     return (
-        <GlobalBanner
-            message='Scheduled maintenance starts at 22:00 UTC.'
-            type='info'
-        />
+        <WidePreview padded={true}>
+            <GlobalBanner
+                message='Scheduled maintenance starts at 22:00 UTC.'
+                type='info'
+            />
+        </WidePreview>
     );
 }
 
@@ -61,7 +63,9 @@ export function MoreUnreadsBannerDetail() {
 
 export function NewMessageBannerPreview() {
     return (
-        <NewMessageBanner countLabel='8 new messages since yesterday'/>
+        <WidePreview padded={true}>
+            <NewMessageBanner countLabel='8 new messages since yesterday'/>
+        </WidePreview>
     );
 }
 
