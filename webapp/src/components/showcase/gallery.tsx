@@ -113,6 +113,11 @@ function CatalogCard({entry, onSelect}: CardProps) {
 
     const select = () => onSelect(entry.id);
 
+    let previewClassName: string | undefined;
+    if (entry.previewSurface === 'sidebar') {
+        previewClassName = 'CompassShowcase__cardPreview--sidebar';
+    }
+
     return (
         <div
             className='CompassShowcase__card'
@@ -126,7 +131,7 @@ function CatalogCard({entry, onSelect}: CardProps) {
                 }
             }}
         >
-            <ScaledPreview>
+            <ScaledPreview className={previewClassName}>
                 <Preview/>
             </ScaledPreview>
             <span className='CompassShowcase__cardMeta'>

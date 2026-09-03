@@ -43,6 +43,8 @@ export function categoryPath(category: Category): string {
     return `Components - ${CATEGORY_LABELS[category]}`;
 }
 
+export type PreviewSurface = 'sidebar';
+
 export type CatalogEntry = {
     id: string;
     name: string;
@@ -50,4 +52,5 @@ export type CatalogEntry = {
     description: string;
     preview: ComponentType;
     detail: ComponentType;
+    previewSurface?: PreviewSurface;
 };

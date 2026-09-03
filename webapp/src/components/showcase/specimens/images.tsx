@@ -147,7 +147,7 @@ export function TeamAvatarPreview() {
 
 export function TeamAvatarDetail() {
     return (
-        <Row>
+        <div className='CompassShowcase__sidebarWell'>
             <TeamAvatar
                 alt='Contributors'
                 initials='Co'
@@ -160,7 +160,7 @@ export function TeamAvatarDetail() {
                 size='40'
                 state='active'
             />
-        </Row>
+        </div>
     );
 }
 

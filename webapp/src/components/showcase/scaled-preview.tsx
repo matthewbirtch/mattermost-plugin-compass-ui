@@ -5,9 +5,10 @@ import React, {useLayoutEffect, useRef, useState} from 'react';
 
 type Props = {
     children: React.ReactNode;
+    className?: string;
 };
 
-export default function ScaledPreview({children}: Props) {
+export default function ScaledPreview({children, className}: Props) {
     const frameRef = useRef<HTMLDivElement>(null);
     const stageRef = useRef<HTMLDivElement>(null);
     const [scale, setScale] = useState(1);
@@ -44,10 +45,15 @@ export default function ScaledPreview({children}: Props) {
         return () => observer.disconnect();
     }, []);
 
+    let previewClassName = 'CompassShowcase__cardPreview';
+    if (className) {
+        previewClassName += ` ${className}`;
+    }
+
     return (
         <div
             ref={frameRef}
-            className='CompassShowcase__cardPreview'
+            className={previewClassName}
         >
             <div
                 className='CompassShowcase__cardScaler'

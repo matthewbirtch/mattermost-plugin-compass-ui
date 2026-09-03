@@ -85,5 +85,20 @@ describe('ScaledPreview', () => {
         expect(scaler.style.width).toEqual('119px');
         expect(scale).toBeCloseTo(119 / 664, 5);
         expect(scale).toBeLessThan(119 / 280);
+        expect(container.querySelector('.CompassShowcase__cardPreview')?.className).toEqual('CompassShowcase__cardPreview');
+    });
+
+    it('appends an optional className to the preview frame', () => {
+        act(() => {
+            root.render(
+                <ScaledPreview className='CompassShowcase__cardPreview--sidebar'>
+                    <div>{'preview'}</div>
+                </ScaledPreview>,
+            );
+        });
+
+        expect(container.querySelector('.CompassShowcase__cardPreview')?.className).toEqual(
+            'CompassShowcase__cardPreview CompassShowcase__cardPreview--sidebar',
+        );
     });
 });

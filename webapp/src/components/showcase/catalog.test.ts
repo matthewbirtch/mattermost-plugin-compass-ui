@@ -73,6 +73,12 @@ describe('CATALOG', () => {
         const ids = CATALOG.map((entry) => entry.id);
         expect(new Set(ids).size).toEqual(ids.length);
     });
+
+    it('opts only Team Avatar into the sidebar preview surface', () => {
+        const entry = CATALOG.find((item) => item.id === 'team-avatar');
+        expect(entry?.previewSurface).toEqual('sidebar');
+        expect(CATALOG.filter((item) => item.previewSurface).map((item) => item.id)).toEqual(['team-avatar']);
+    });
 });
 
 describe('categoryPath', () => {

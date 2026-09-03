@@ -144,6 +144,13 @@
     background: rgba(var(--center-channel-color-rgb), 0.12);
 }
 
+// Team avatars sit on sidebar chrome. Opt-in via CatalogEntry.previewSurface.
+.CompassShowcase__cardPreview--sidebar,
+.CompassShowcase__card:hover .CompassShowcase__cardPreview--sidebar,
+.CompassShowcase__card:focus-visible .CompassShowcase__cardPreview--sidebar {
+    background: var(--sidebar-header-bg);
+}
+
 @media (prefers-reduced-motion: reduce) {
     .CompassShowcase__cardPreview {
         transition: none;
@@ -278,6 +285,12 @@
     padding: 48px;
 }
 
+// Global Banner is width:100%, so even a 480px stage still reads as a
+// full-bleed strip. Extra padding shrinks it into a thumbnail with gutters.
+.CompassShowcase__widePreview--padded {
+    padding: 96px;
+}
+
 // Message Input is width:100%, so even a 480px stage still reads as a squeezed
 // full-width composer. Extra padding shrinks it into a thumbnail with gutters.
 .CompassShowcase__messageInputPreview {
@@ -322,6 +335,44 @@
     padding: 8px;
     border-radius: var(--radius-s, 4px);
     background: rgba(var(--center-channel-color-rgb), 0.06);
+}
+
+// Compact overflowing well for the gallery tile. Keep this small so
+// ScaledPreview does not shrink a paragraph of copy over the thumb.
+.CompassShowcase__scrollbarPreview {
+    flex: 0 0 auto;
+    width: 64px;
+    height: 80px;
+
+    // The card tile is pointer-events:none, so hover never unhides the thumb.
+    // Nested SimpleBar under transform:scale() can also leave ::before at 0.
+    .simplebar-scrollbar:before {
+        opacity: 1;
+    }
+}
+
+.CompassShowcase__scrollbarDemoLine {
+    display: block;
+    height: 8px;
+    margin-bottom: 8px;
+    border-radius: 2px;
+    background: rgba(var(--center-channel-color-rgb), 0.16);
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.CompassShowcase__sidebarWell {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    width: fit-content;
+    max-width: 100%;
+    padding: 12px;
+    border-radius: var(--radius-m, 8px);
+    background: var(--sidebar-header-bg);
 }
 
 // Mattermost `label { font-weight: 600 }` inherits into Compass Checkbox,

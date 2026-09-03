@@ -351,6 +351,7 @@ export const CATALOG: CatalogEntry[] = [
         description: 'Rounded-square identity for a team.',
         preview: TeamAvatarPreview,
         detail: TeamAvatarDetail,
+        previewSurface: 'sidebar',
     },
     {
         id: 'illustration',

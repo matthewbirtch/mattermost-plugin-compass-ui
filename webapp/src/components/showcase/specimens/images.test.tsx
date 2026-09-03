@@ -6,7 +6,15 @@ import {createRoot} from 'react-dom/client';
 import type {Root} from 'react-dom/client';
 import {act} from 'react-dom/test-utils';
 
-import {IllustrationDetail, IllustrationPreview} from './images';
+import {IllustrationDetail, IllustrationPreview, TeamAvatarDetail} from './images';
+
+jest.mock('@mattermost/compass-ui/components/team-avatar', () => ({
+    TeamAvatar: ({alt}: {alt?: string}) => (
+        <div data-testid='team-avatar'>
+            {alt}
+        </div>
+    ),
+}));
 
 type Rendered = {
     container: HTMLDivElement;
@@ -64,5 +72,22 @@ describe('Illustration specimens', () => {
         expect(svg?.getAttribute('viewBox')).toEqual('0 0 160 96');
         expect(circles.length).toBeGreaterThan(0);
         expect(polygons.length).toBeGreaterThan(0);
+    });
+});
+
+describe('TeamAvatar specimens', () => {
+    let rendered: Rendered | undefined;
+
+    afterEach(() => {
+        rendered?.unmount();
+    });
+
+    it('places detail avatars in a sidebar-header well', () => {
+        const view = render(<TeamAvatarDetail/>);
+        rendered = view;
+
+        const well = view.container.firstElementChild as HTMLElement;
+        expect(well.className).toEqual('CompassShowcase__sidebarWell');
+        expect(view.container.querySelectorAll('[data-testid="team-avatar"]')).toHaveLength(2);
     });
 });
