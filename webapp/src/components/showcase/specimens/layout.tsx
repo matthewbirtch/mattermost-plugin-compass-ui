@@ -12,7 +12,14 @@ import {Note, Variant, WidePreview} from './shared';
 
 export function DividerPreview() {
     return (
-        <Divider/>
+        <div
+            className='CompassShowcase__stack'
+            style={{width: 88}}
+        >
+            <span>{'Above'}</span>
+            <Divider/>
+            <span>{'Below'}</span>
+        </div>
     );
 }
 

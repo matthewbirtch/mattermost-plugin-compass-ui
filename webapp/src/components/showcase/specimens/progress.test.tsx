@@ -6,7 +6,7 @@ import {createRoot} from 'react-dom/client';
 import type {Root} from 'react-dom/client';
 import {act} from 'react-dom/test-utils';
 
-import {PaginationDotsDetail, PaginationDotsPreview} from './progress';
+import {PaginationDotsDetail, PaginationDotsPreview, ProgressBarPreview} from './progress';
 
 type Rendered = {
     container: HTMLDivElement;
@@ -71,5 +71,25 @@ describe('PaginationDots specimens', () => {
 
         expect(pageOne?.getAttribute('aria-selected')).toEqual('false');
         expect(pageFour?.getAttribute('aria-selected')).toEqual('true');
+    });
+});
+
+describe('ProgressBar specimens', () => {
+    let rendered: Rendered | undefined;
+
+    afterEach(() => {
+        rendered?.unmount();
+    });
+
+    it('gives the gallery preview a definite width and a visible value', () => {
+        const view = render(<ProgressBarPreview/>);
+        rendered = view;
+
+        const bar = view.container.querySelector('[role="progressbar"]');
+        const wrapper = bar?.parentElement as HTMLElement | null;
+
+        expect(wrapper?.style.width).toEqual('112px');
+        expect(bar?.getAttribute('aria-valuenow')).toEqual('64');
+        expect(bar?.getAttribute('aria-valuenow')).not.toEqual('0');
     });
 });

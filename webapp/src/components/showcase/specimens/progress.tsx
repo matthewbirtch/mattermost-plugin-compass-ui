@@ -27,7 +27,9 @@ export function SpinnerDetail() {
 
 export function ProgressBarPreview() {
     return (
-        <ProgressBar value={64}/>
+        <div style={{width: 112}}>
+            <ProgressBar value={64}/>
+        </div>
     );
 }
 
