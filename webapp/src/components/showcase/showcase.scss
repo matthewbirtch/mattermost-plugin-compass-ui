@@ -130,6 +130,7 @@
     border: none;
     border-radius: 12px;
     background: rgba(var(--center-channel-color-rgb), 0.08);
+    text-align: left;
 }
 
 .CompassShowcase__card:hover .CompassShowcase__cardPreview,
@@ -149,6 +150,7 @@
     max-width: 280px;
     padding: 12px;
     transform-origin: top left;
+    text-align: left;
 }
 
 .CompassShowcase__cardMeta {
@@ -264,4 +266,11 @@
     flex-direction: column;
     gap: 8px;
     min-width: 0;
+}
+
+// Mattermost `label { font-weight: 600 }` inherits into Compass Checkbox,
+// Radio, and Switch, which render as <label> without setting font-weight.
+.CompassShowcase__stack > label,
+.CompassShowcase__cardStage label {
+    font-weight: inherit;
 }

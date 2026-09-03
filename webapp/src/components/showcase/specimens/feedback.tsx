@@ -99,13 +99,47 @@ export function TooltipDetail() {
             <Note>
                 {'Tooltip is chrome-only — the host owns hover, delay, and positioning.'}
             </Note>
-            <Variant label='With hint and shortcut'>
+            <Variant label='Label only'>
+                <Tooltip label='Add a reaction'/>
+            </Variant>
+            <Variant label='Label and hint'>
                 <Tooltip
-                    arrow='bottom'
+                    hint='Search this channel'
+                    label='Find'
+                />
+            </Variant>
+            <Variant label='Label and shortcut'>
+                <Tooltip
+                    label='Find'
+                    shortcutKeys={[{label: '⌘'}, {label: 'F'}]}
+                />
+            </Variant>
+            <Variant label='Label, hint, and shortcut'>
+                <Tooltip
                     hint='Search this channel'
                     label='Find'
                     shortcutKeys={[{label: '⌘'}, {label: 'F'}]}
                 />
+            </Variant>
+            <Variant label='Arrow positions'>
+                <div className='CompassShowcase__stack'>
+                    <Tooltip
+                        arrow='top'
+                        label='Top'
+                    />
+                    <Tooltip
+                        arrow='right'
+                        label='Right'
+                    />
+                    <Tooltip
+                        arrow='bottom'
+                        label='Bottom'
+                    />
+                    <Tooltip
+                        arrow='left'
+                        label='Left'
+                    />
+                </div>
             </Variant>
         </>
     );

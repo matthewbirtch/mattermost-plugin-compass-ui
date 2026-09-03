@@ -110,11 +110,20 @@ type CardProps = {
 function CatalogCard({entry, onSelect}: CardProps) {
     const Preview = entry.preview;
 
+    const select = () => onSelect(entry.id);
+
     return (
-        <button
-            type='button'
+        <div
             className='CompassShowcase__card'
-            onClick={() => onSelect(entry.id)}
+            role='button'
+            tabIndex={0}
+            onClick={select}
+            onKeyDown={(event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    select();
+                }
+            }}
         >
             <ScaledPreview>
                 <Preview/>
@@ -127,6 +136,6 @@ function CatalogCard({entry, onSelect}: CardProps) {
                     {categoryPath(entry.category)}
                 </span>
             </span>
-        </button>
+        </div>
     );
 }
