@@ -43,8 +43,19 @@ jest.mock('@mattermost/compass-ui/components/scrollbar', () => ({
 }));
 
 jest.mock('@mattermost/compass-ui/components/search-input', () => ({
-    SearchInput: () => (
-        <input aria-label='Search'/>
+    SearchInput: ({label, value, onChange}: {
+        label?: React.ReactNode;
+        value?: string;
+        onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    }) => (
+        <label>
+            {label}
+            <input
+                type='search'
+                value={value}
+                onChange={onChange}
+            />
+        </label>
     ),
 }));
 
@@ -97,6 +108,14 @@ describe('Gallery preview surfaces', () => {
 
     afterEach(() => {
         rendered?.unmount();
+    });
+
+    it('uses Compass SearchInput labeled Search Compass UI', () => {
+        const view = render(<Gallery onSelect={() => undefined}/>);
+        rendered = view;
+
+        expect(view.container.textContent).toContain('Search Compass UI');
+        expect(view.container.querySelector('input[type="search"]')).not.toBeNull();
     });
 
     it('applies the sidebar modifier only on the Team Avatar tile', () => {
