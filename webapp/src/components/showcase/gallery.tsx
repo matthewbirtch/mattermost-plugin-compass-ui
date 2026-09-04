@@ -89,8 +89,7 @@ export default function Gallery({onSelect}: Props) {
         <div className='CompassShowcase'>
             <div className='CompassShowcase__chrome'>
                 <SearchInput
-                    placeholder='Search'
-                    aria-label='Search'
+                    label='Search Compass UI'
                     value={query}
                     onChange={(event) => setQuery(event.target.value)}
                     onClear={() => setQuery('')}
