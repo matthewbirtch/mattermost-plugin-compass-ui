@@ -34,6 +34,11 @@ const config = {
         './src/index.tsx',
     ],
     resolve: {
+        alias: {
+            // compass-ui alpha.10+ uses the new JSX transform (react/jsx-runtime).
+            // Shim it to window.React so we don't bundle a second, mismatched copy.
+            'react/jsx-runtime$': path.resolve(__dirname, 'src/jsx-runtime.js'),
+        },
         modules: [
             'src',
             'node_modules',
