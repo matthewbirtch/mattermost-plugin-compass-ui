@@ -11,16 +11,16 @@ import {Row, Variant} from './shared';
 
 export function SpinnerPreview() {
     return (
-        <Spinner size={24}/>
+        <Spinner size='24'/>
     );
 }
 
 export function SpinnerDetail() {
     return (
         <Row>
-            <Spinner size={16}/>
-            <Spinner size={24}/>
-            <Spinner size={32}/>
+            <Spinner size='16'/>
+            <Spinner size='24'/>
+            <Spinner size='32'/>
         </Row>
     );
 }
