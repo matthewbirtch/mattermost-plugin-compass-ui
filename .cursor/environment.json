@@ -1,0 +1,5 @@
+{
+  "name": "Compass UI Plugin",
+  "user": "ubuntu",
+  "install": "bash ./.cursor/install.sh"
+}
