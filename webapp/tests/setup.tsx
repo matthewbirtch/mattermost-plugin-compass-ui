@@ -3,4 +3,12 @@
 
 (globalThis as {IS_REACT_ACT_ENVIRONMENT?: boolean}).IS_REACT_ACT_ENVIRONMENT = true;
 
+if (typeof globalThis.ResizeObserver === 'undefined') {
+    (globalThis as {ResizeObserver?: unknown}).ResizeObserver = class {
+        observe() {}
+        unobserve() {}
+        disconnect() {}
+    };
+}
+
 export {};

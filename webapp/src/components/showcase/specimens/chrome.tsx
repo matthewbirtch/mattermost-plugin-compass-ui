@@ -5,9 +5,7 @@ import React from 'react';
 
 import {AdminConsoleHeader} from '@mattermost/compass-ui/components/admin-console-header';
 import {FeatureDiscoveryPanel} from '@mattermost/compass-ui/components/feature-discovery-panel';
-import {GlobalHeader} from '@mattermost/compass-ui/components/global-header';
 import {RightSidebarHeader} from '@mattermost/compass-ui/components/right-sidebar-header';
-import {TeamSidebar} from '@mattermost/compass-ui/components/team-sidebar';
 
 import {IllustrationMark} from './images';
 import {Excerpt, Note, WidePreview} from './shared';
@@ -18,58 +16,6 @@ const featureDiscoveryIllustration = {
     height: '96px',
     width: '160px',
 };
-
-export function GlobalHeaderPreview() {
-    return (
-        <WidePreview>
-            <Excerpt>
-                <GlobalHeader userAvatarAlt='You'/>
-            </Excerpt>
-        </WidePreview>
-    );
-}
-
-export function GlobalHeaderDetail() {
-    return (
-        <>
-            <Note>
-                {'Global Header is too wide for the RHS — this is a clipped layout excerpt.'}
-            </Note>
-            <Excerpt>
-                <GlobalHeader
-                    showUpgradeButton={true}
-                    userAvatarAlt='You'
-                />
-            </Excerpt>
-        </>
-    );
-}
-
-export function TeamSidebarPreview() {
-    return (
-        <TeamSidebar
-            activeTeamId='contributors'
-            teams={[
-                {id: 'contributors', name: 'Contributors', initials: 'Co'},
-                {id: 'design', name: 'Design', initials: 'De', unread: true},
-            ]}
-        />
-    );
-}
-
-export function TeamSidebarDetail() {
-    return (
-        <TeamSidebar
-            activeTeamId='design'
-            showAddTeam={true}
-            teams={[
-                {id: 'contributors', name: 'Contributors', initials: 'Co'},
-                {id: 'design', name: 'Design', initials: 'De', mentions: 3},
-                {id: 'release', name: 'Release', initials: 'Re', unread: true},
-            ]}
-        />
-    );
-}
 
 export function RightSidebarHeaderPreview() {
     return (

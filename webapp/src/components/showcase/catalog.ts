@@ -34,12 +34,8 @@ import {
     AdminConsoleHeaderPreview,
     FeatureDiscoveryPanelDetail,
     FeatureDiscoveryPanelPreview,
-    GlobalHeaderDetail,
-    GlobalHeaderPreview,
     RightSidebarHeaderDetail,
     RightSidebarHeaderPreview,
-    TeamSidebarDetail,
-    TeamSidebarPreview,
 } from './specimens/chrome';
 import {
     ErrorMessageDetail,
@@ -590,22 +586,6 @@ export const CATALOG: CatalogEntry[] = [
         description: 'Nudge toward the in-channel search shortcut.',
         preview: SearchTipBannerPreview,
         detail: SearchTipBannerDetail,
-    },
-    {
-        id: 'global-header',
-        name: 'Global Header',
-        category: 'chrome',
-        description: 'App header excerpt — too wide for a full RHS layout.',
-        preview: GlobalHeaderPreview,
-        detail: GlobalHeaderDetail,
-    },
-    {
-        id: 'team-sidebar',
-        name: 'Team Sidebar',
-        category: 'chrome',
-        description: 'Team switcher strip with unread and mention badges.',
-        preview: TeamSidebarPreview,
-        detail: TeamSidebarDetail,
     },
     {
         id: 'right-sidebar-header',
