@@ -53,16 +53,8 @@ jest.mock('@mattermost/compass-ui/components/feature-discovery-panel', () => ({
     ),
 }));
 
-jest.mock('@mattermost/compass-ui/components/global-header', () => ({
-    GlobalHeader: () => null,
-}));
-
 jest.mock('@mattermost/compass-ui/components/right-sidebar-header', () => ({
     RightSidebarHeader: () => null,
-}));
-
-jest.mock('@mattermost/compass-ui/components/team-sidebar', () => ({
-    TeamSidebar: () => null,
 }));
 
 type Rendered = {

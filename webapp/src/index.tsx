@@ -13,11 +13,7 @@ import ShowcaseRHS from 'components/showcase/rhs';
 
 import type {PluginRegistry} from 'types/mattermost-webapp';
 
-/* Tokens must load before component CSS. */
-/* eslint-disable import/order */
 import '@mattermost/compass-ui/styles';
-import '@mattermost/compass-ui/component-styles';
-/* eslint-enable import/order */
 
 export default class Plugin {
     public async initialize(registry: PluginRegistry, store: Store<GlobalState>) {
